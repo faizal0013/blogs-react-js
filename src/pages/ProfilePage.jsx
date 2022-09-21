@@ -69,35 +69,41 @@ const ProfilePage = () => {
                 </Link>
               </CenterDiv>
               <Hr className={'my-3'} />
-              <CenterDiv className="grid grid-cols-3 gap-8 my-20">
-                {profile.postId.map(post => (
-                  <div
-                    key={post._id}
-                    className="shadow-lg px-7 border py-3 transition-all ease-in-out duration-500 hover:scale-105 hover:-translate-y-2"
-                  >
-                    <div className="my-4 flex gap-5 justify-end">
-                      <Link
-                        to={`/profile/updateblog/${post._id}`}
-                        className={'transition-all ease-in-out duration-500 hover:scale-125'}
-                      >
-                        <RiEdit2Line size={25} color={'red'} />
-                      </Link>
-                      <Link
-                        to={`/profile/removeblog/${post._id}`}
-                        className={'transition-all ease-in-out duration-500 hover:scale-125'}
-                      >
-                        <MdOutlineDeleteSweep size={25} color={'red'} />
+              {profile.postId.length ? (
+                <CenterDiv className="grid grid-cols-3 gap-8 my-20">
+                  {profile.postId.map(post => (
+                    <div
+                      key={post._id}
+                      className="shadow-lg px-7 border py-3 transition-all ease-in-out duration-500 hover:scale-105 hover:-translate-y-2"
+                    >
+                      <div className="my-4 flex gap-5 justify-end">
+                        <Link
+                          to={`/profile/updateblog/${post._id}`}
+                          className={'transition-all ease-in-out duration-500 hover:scale-125'}
+                        >
+                          <RiEdit2Line size={25} color={'red'} />
+                        </Link>
+                        <Link
+                          to={`/profile/removeblog/${post._id}`}
+                          className={'transition-all ease-in-out duration-500 hover:scale-125'}
+                        >
+                          <MdOutlineDeleteSweep size={25} color={'red'} />
+                        </Link>
+                      </div>
+                      <Link to={`/blogs/${post._id}`}>
+                        <img src={require(`../assets/uploads/${post.image}`)} alt="" />
+                        <h4 className="my-2 text-center text-xl">{post.title}</h4>
+                        <p className="text-gray-600 font-serif">{post.updatedAt.split('T')[0]}</p>
+                        <p className="mt-2">{post.descriptions.slice(0, 50)}</p>
                       </Link>
                     </div>
-                    <Link to={`/blogs/${post._id}`}>
-                      <img src={require(`../assets/uploads/${post.image}`)} alt="" />
-                      <h4 className="my-2 text-center text-xl">{post.title}</h4>
-                      <p className="text-gray-600 font-serif">{post.updatedAt.split('T')[0]}</p>
-                      <p className="mt-2">{post.descriptions.slice(0, 50)}</p>
-                    </Link>
-                  </div>
-                ))}
-              </CenterDiv>
+                  ))}
+                </CenterDiv>
+              ) : (
+                <CenterDiv>
+                  <h1 className="text-center font-bold text-6xl my-56">No Blogs</h1>
+                </CenterDiv>
+              )}
             </>
           }
         </CenterDiv>

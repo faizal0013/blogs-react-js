@@ -10,6 +10,18 @@ exports.signupController = async (req, res) => {
     return await res.status(404).json({ message: 'Field is empty' });
   }
 
+  const isUsername = await User.findOne({ username });
+
+  if (isUsername) {
+    return await res.status(404).json({ message: 'username is already exists' });
+  }
+
+  const isEmail = await User.findOne({ emailId });
+
+  if (isEmail) {
+    return await res.status(404).json({ message: 'email is already have a account' });
+  }
+
   if (password !== conformPassword) {
     return await res.status(404).json({ message: 'password and conform password is not match' });
   }
