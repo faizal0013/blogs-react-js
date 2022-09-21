@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { toast } from 'react-toastify';
+
 import axios from 'axios';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
@@ -26,10 +28,10 @@ const BlogNewPage = () => {
     axios
       .post(`http://localhost:8080/profile/newblog/${_id}`, formData)
       .then(data => {
-        console.log(data.data);
         navigate(-1);
+        toast.success(data.data.message);
       })
-      .catch(err => console.log(err));
+      .catch(err => toast.error(err.response.data.message));
   };
 
   const goBackHander = () => {

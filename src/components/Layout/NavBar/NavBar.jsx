@@ -1,5 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import AuthContext from '../../../context/auth-context';
 import Profile from '../../Profile';
 
@@ -18,6 +20,7 @@ const NavBar = () => {
   const logoutHander = e => {
     e.preventDefault();
     isAuthSubmitHandler(false);
+    toast.success('logout successfully');
     localStorage.removeItem('_id');
     navigate('/');
   };

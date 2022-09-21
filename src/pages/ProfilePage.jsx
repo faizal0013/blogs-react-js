@@ -1,29 +1,41 @@
 import { useEffect, useState } from 'react';
 import { HashLoader } from 'react-spinners';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineDeleteSweep } from 'react-icons/md';
 import { RiEdit2Line } from 'react-icons/ri';
+import { toast } from 'react-toastify';
 
 import axios from 'axios';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
-import Hr from '../UI/hr/Hr';
+import Hr from '../UI/Hr/Hr';
 
 const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState({});
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const _id = localStorage.getItem('_id');
 
-    axios
-      .post(`http://localhost:8080/profile/${JSON.parse(_id)}`)
-      .then(data => {
-        setLoading(false);
-        setProfile(data.data);
-      })
-      .catch(err => console.log(err));
-  }, []);
+    const timeOut = setTimeout(() => {
+      axios
+        .post(`http://localhost:8080/profile/${JSON.parse(_id)}`)
+        .then(data => {
+          setLoading(false);
+          setProfile(data.data);
+        })
+        .catch(err => {
+          toast.error(err.response.data.message);
+          navigate(-1);
+        });
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeOut);
+    };
+  }, [navigate]);
 
   const capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1);
 

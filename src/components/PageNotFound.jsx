@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
 
 const PageNotFound = () => {

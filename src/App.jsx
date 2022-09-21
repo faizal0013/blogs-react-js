@@ -1,4 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
+import { useContext } from 'react';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 import HomePage from './pages/HomePage';
 import SigninPage from './pages/SigninPage';
@@ -12,7 +15,6 @@ import BlogRemovePage from './pages/BlogRemovePage';
 import BlogUpdatePage from './pages/BlogUpdatePage';
 import BlogNewPage from './pages/BlogNewPage';
 import ProfilePage from './pages/ProfilePage';
-import { useContext } from 'react';
 import AuthContext from './context/auth-context';
 
 const App = () => {

@@ -5,8 +5,7 @@ import { HashLoader } from 'react-spinners';
 import axios from 'axios';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
-
-import Hr from '../UI/hr/Hr';
+import Hr from '../UI/Hr/Hr';
 
 const SingleBlogPage = () => {
   const [loading, setLoading] = useState(true);

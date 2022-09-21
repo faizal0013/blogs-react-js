@@ -4,10 +4,14 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 exports.signupController = async (req, res) => {
-  const { fullName, emailId, username, password } = req.body;
+  const { fullName, emailId, username, password, conformPassword } = req.body;
 
-  if (!fullName || !emailId || !username || !password) {
-    return await res.status(404).json({ message: 'is emty' });
+  if (!fullName || !emailId || !username || !password || !conformPassword) {
+    return await res.status(404).json({ message: 'Field is empty' });
+  }
+
+  if (password !== conformPassword) {
+    return await res.status(404).json({ message: 'password and conform password is not match' });
   }
 
   const hashPassword = await bcrypt.hash(password, 13);
@@ -17,7 +21,7 @@ exports.signupController = async (req, res) => {
   await user.save();
 
   await res.status(201).json({
-    message: 'done',
+    message: 'sign up successful',
   });
 };
 
@@ -25,26 +29,26 @@ exports.signinController = async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return await res.status(404).json({ message: 'is emty' });
+    return await res.status(404).json({ message: 'username and password is empty' });
   }
 
   // fetching user from database
   const account = await User.findOne({ username });
 
   if (!account) {
-    return await res.status(401).json({ message: 'User not found' });
+    return await res.status(401).json({ message: 'username and password invalid' });
   }
 
   const isCompare = await bcrypt.compare(password, account.hashPassword);
 
-  if (isCompare) {
-    const { _id } = account;
-
-    return await res.status(201).json({
-      message: 'login',
-      _id,
-    });
+  if (!isCompare) {
+    return await res.status(401).json({ message: 'username and password invalid' });
   }
 
-  res.status(401).json({ message: 'not auth' });
+  const { _id } = account;
+
+  return await res.status(201).json({
+    message: 'login successful',
+    _id,
+  });
 };

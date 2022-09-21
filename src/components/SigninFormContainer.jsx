@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { toast } from 'react-toastify';
+
 import axios from 'axios';
 
-import Input from '../UI/input/Input';
+import Input from '../UI/Input/Input';
 import AuthContext from '../context/auth-context';
 
 const SignInFormContainer = () => {
@@ -37,14 +39,13 @@ const SignInFormContainer = () => {
         localStorage.setItem('_id', JSON.stringify(_id));
 
         isAuthSubmitHandler(true);
-
+        toast.success(data.data.message);
         // navigate to / -> index | home
         navigate('/');
       })
-      .catch(error => {
+      .catch(err => {
         setPassword('');
-
-        console.error(error); //Logs a string: Error: Request failed with status code 404
+        toast.error(err.response.data.message);
       });
   };
 

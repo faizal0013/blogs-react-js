@@ -31,32 +31,43 @@ exports.getBlogsById = async (req, res) => {
 exports.getProfileDetail = async (req, res) => {
   const { _id } = req.params;
 
+  if (!_id) {
+    return await res.status(400).json({ message: 'something is wrong' });
+  }
+
   const user = await User.findById(_id).populate('postId');
 
   await res.status(200).json(user);
 };
 
 exports.postNewBlog = async (req, res) => {
-  const { _id } = req.params;
+  try {
+    const { _id } = req.params;
 
-  const { title, descriptions } = req.body;
+    const { title, descriptions } = req.body;
 
-  const post = new Posts({
-    title: title,
-    descriptions,
-    image: req.file.filename,
-    userId: _id,
-  });
+    if (!title || !descriptions) {
+      return await res.status(400).json({ message: 'field is empty' });
+    }
 
-  const user = await User.findByIdAndUpdate(_id, { $push: { postId: post._id } });
+    const post = new Posts({
+      title: title,
+      descriptions,
+      image: req.file.filename,
+      userId: _id,
+    });
 
-  await post.save();
+    const user = await User.findByIdAndUpdate(_id, { $push: { postId: post._id } });
 
-  if (user) {
-    return await res.status(200).json({ message: 'pose is succesfully' });
+    if (user) {
+      await post.save();
+      return await res.status(200).json({ message: 'pose is succesfully' });
+    }
+
+    await res.status(400).json({ message: 'something is wrong' });
+  } catch (error) {
+    await res.status(400).json({ message: 'field is empty' });
   }
-
-  await res.status(400).json({ message: 'something is wrong' });
 };
 
 exports.getUpdateDetailById = async (req, res) => {
@@ -75,6 +86,10 @@ exports.putUpdateDetailById = async (req, res) => {
   const { _id } = req.params;
 
   const { title, oldImage, descriptions } = req.body;
+
+  if (!title || !descriptions) {
+    return await res.status(400).json({ message: 'field is empty' });
+  }
 
   if (oldImage) {
     const posts = await Posts.findByIdAndUpdate(_id, {
@@ -107,7 +122,7 @@ exports.removeBlogById = async (req, res) => {
     const deletePostId = await Posts.findByIdAndRemove(_id);
 
     if (!deletePostId) {
-      return await res.status(400).json({ message: 'post is not found' });
+      return await res.status(400).json({ message: 'Somthing is wrong' });
     }
 
     const user = await User.findByIdAndUpdate(deletePostId.userId, {
@@ -117,9 +132,9 @@ exports.removeBlogById = async (req, res) => {
     if (user) {
       fs.unlinkSync(path.join(UPLOADFILEPATH, deletePostId.image));
 
-      return await res.status(200).json({ message: 'blog is remove' });
+      return await res.status(200).json({ message: 'blog is remove successful' });
     }
   } catch (error) {
-    return await res.status(400).json({ message: error.message });
+    return await res.status(400).json({ message: 'Somthing is wrong' });
   }
 };

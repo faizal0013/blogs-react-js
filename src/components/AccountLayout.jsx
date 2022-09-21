@@ -1,5 +1,5 @@
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
-import ShadowBox from '../UI/shadow-box/ShadowBox';
+import ShadowBox from '../UI/ShadowBox/ShadowBox';
 
 const AccountLayout = ({ children, labal, otherElement }) => {
   return (

@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import axios from 'axios';
 
-import Input from '../UI/input/Input';
+import Input from '../UI/Input/Input';
 
 const SignupFormContainer = () => {
   const [fullName, setFullName] = useState('');
@@ -19,25 +20,24 @@ const SignupFormContainer = () => {
   const onSubmitForm = e => {
     e.preventDefault();
 
-    if (password === conformPassword) {
-      axios
-        .post('http://localhost:8080/signup', {
-          fullName,
-          emailId: email,
-          username,
-          password,
-        })
-        .then(data => {
-          // navigate to / -> signin
-          navigate('/signin');
-          console.log(data.data);
-        })
-        .catch(error => {
-          setPassword('');
-          setConformPassword('');
-          console.error(error); //Logs a string: Error: Request failed with status code 404
-        });
-    }
+    axios
+      .post('http://localhost:8080/signup', {
+        fullName,
+        emailId: email,
+        username,
+        password,
+        conformPassword,
+      })
+      .then(data => {
+        // navigate to / -> signin
+        navigate('/signin');
+        toast.success(data.data.message);
+      })
+      .catch(err => {
+        setPassword('');
+        setConformPassword('');
+        toast.error(err.response.data.message);
+      });
   };
 
   const onInputFullNameChange = e => {

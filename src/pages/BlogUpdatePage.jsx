@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { HashLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
 
 import axios from 'axios';
 
@@ -23,9 +24,10 @@ const BlogUpdatePage = () => {
         setPost(data.data);
         setLoading(false);
       })
-      .catch(err => console.log(err));
-
-    // navigate(-1);
+      .catch(err => {
+        toast.error(err.response.data.message);
+        navigate(-1);
+      });
   }, [navigate, _id]);
 
   const goBackHander = () => {
@@ -51,10 +53,10 @@ const BlogUpdatePage = () => {
     axios
       .put(`http://localhost:8080/profile/updateblog/${_id}`, formData)
       .then(data => {
-        console.log(data.data);
+        toast.success(data.data.message);
         navigate(-1);
       })
-      .catch(err => console.log(err));
+      .catch(err => toast.error(err.response.data.message));
   };
 
   const onChangeTitle = e => {

@@ -1,5 +1,5 @@
 import NavBar from './NavBar/NavBar';
-import Hr from '../../UI/hr/Hr';
+import Hr from '../../UI/Hr/Hr';
 import Footer from './Footer/Footer';
 
 const Layout = ({ children }) => {
