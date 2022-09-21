@@ -1,0 +1,79 @@
+import { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+
+import Input from '../UI/input/Input';
+import AuthContext from '../context/auth-context';
+
+const SignInFormContainer = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { isAuth, isAuthSubmitHandler } = useContext(AuthContext);
+
+  //   v5 Redirects -> v6 useNavigate
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    return () => {
+      if (isAuth) {
+        navigate('/profile');
+      }
+    };
+  }, [isAuth, navigate]);
+
+  const onSubmitForm = e => {
+    e.preventDefault();
+
+    axios
+      .post('http://localhost:8080/signin', {
+        username,
+        password,
+      })
+      .then(data => {
+        const { _id } = data.data;
+
+        localStorage.setItem('_id', JSON.stringify(_id));
+
+        isAuthSubmitHandler(true);
+
+        // navigate to / -> index | home
+        navigate('/');
+      })
+      .catch(error => {
+        setPassword('');
+
+        console.error(error); //Logs a string: Error: Request failed with status code 404
+      });
+  };
+
+  const onInputUsernameChange = e => {
+    setUsername(e.target.value);
+  };
+
+  const onInputPasswordChange = e => {
+    setPassword(e.target.value);
+  };
+
+  return (
+    <>
+      <form onSubmit={onSubmitForm} method="post">
+        <div className="flex flex-col gap-y-6">
+          <Input type="text" onChange={onInputUsernameChange} value={username} placeholder="username" />
+          <Input type="password" onChange={onInputPasswordChange} value={password} placeholder="password" />
+          <div className="flex flex-col gap-y-6">
+            <button type="submit" className="p-2 shadow-lg shadow-indigo-500/50 bg-indigo-500 font-bold text-white">
+              Login
+            </button>
+            <Link to="{#}" className="text-blue-700 underline text-right">
+              Forgot password?
+            </Link>
+          </div>
+        </div>
+      </form>
+    </>
+  );
+};
+
+export default SignInFormContainer;

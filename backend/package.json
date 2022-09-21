@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "serve": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "cors": "2.8.5",
+    "dotenv": "16.0.2",
+    "express": "4.18.1",
+    "mongoose": "6.6.0",
+    "multer": "1.4.5-lts.1",
+    "randomstring": "1.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.19"
+  }
+}

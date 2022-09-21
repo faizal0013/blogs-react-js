@@ -1,0 +1,97 @@
+import { useEffect, useState } from 'react';
+import { HashLoader } from 'react-spinners';
+import { Link } from 'react-router-dom';
+import { MdOutlineDeleteSweep } from 'react-icons/md';
+import { RiEdit2Line } from 'react-icons/ri';
+
+import axios from 'axios';
+
+import CenterDiv from '../UI/CenterDiv/CenterDiv';
+import Hr from '../UI/hr/Hr';
+
+const ProfilePage = () => {
+  const [loading, setLoading] = useState(true);
+  const [profile, setProfile] = useState({});
+
+  useEffect(() => {
+    const _id = localStorage.getItem('_id');
+
+    axios
+      .post(`http://localhost:8080/profile/${JSON.parse(_id)}`)
+      .then(data => {
+        setLoading(false);
+        setProfile(data.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
+  const capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1);
+
+  return (
+    <>
+      {loading ? (
+        <div className="flex justify-center items-center h-[51rem]">
+          <HashLoader size={115} color="#36d7b7" loading={loading} />
+        </div>
+      ) : (
+        <CenterDiv>
+          {
+            <>
+              <div className="flex justify-around w-[50rem] mx-auto items-center">
+                <img src={require(`../assets/profile/${profile.profile}`)} className="rounded-full" alt="" />
+                <div className="flex gap-6 flex-col">
+                  <div>
+                    <span>Full Name</span> <h1 className="text-4xl">{capitalizeFirstLetter(profile.fullName)}</h1>
+                  </div>
+                  <div>
+                    <span>username</span> <h1 className="text-4xl">{profile.username}</h1>
+                  </div>
+                </div>
+              </div>
+              <CenterDiv className={'text-right'}>
+                <Link
+                  to={`/profile/newblog/${profile._id}`}
+                  className="p-3 bg-cyan-500 shadow-lg shadow-cyan-500/50 text-white font-bold rounded-lg "
+                >
+                  New Blog
+                </Link>
+              </CenterDiv>
+              <Hr className={'my-3'} />
+              <CenterDiv className="grid grid-cols-3 gap-8 my-20">
+                {profile.postId.map(post => (
+                  <div
+                    key={post._id}
+                    className="shadow-lg px-7 border py-3 transition-all ease-in-out duration-500 hover:scale-105 hover:-translate-y-2"
+                  >
+                    <div className="my-4 flex gap-5 justify-end">
+                      <Link
+                        to={`/profile/updateblog/${post._id}`}
+                        className={'transition-all ease-in-out duration-500 hover:scale-125'}
+                      >
+                        <RiEdit2Line size={25} color={'red'} />
+                      </Link>
+                      <Link
+                        to={`/profile/removeblog/${post._id}`}
+                        className={'transition-all ease-in-out duration-500 hover:scale-125'}
+                      >
+                        <MdOutlineDeleteSweep size={25} color={'red'} />
+                      </Link>
+                    </div>
+                    <Link to={`/blogs/${post._id}`}>
+                      <img src={require(`../assets/uploads/${post.image}`)} alt="" />
+                      <h4 className="my-2 text-center text-xl">{post.title}</h4>
+                      <p className="text-gray-600 font-serif">{post.updatedAt.split('T')[0]}</p>
+                      <p className="mt-2">{post.descriptions.slice(0, 50)}</p>
+                    </Link>
+                  </div>
+                ))}
+              </CenterDiv>
+            </>
+          }
+        </CenterDiv>
+      )}
+    </>
+  );
+};
+
+export default ProfilePage;

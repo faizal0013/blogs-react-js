@@ -8,6 +8,14 @@
 # testing
 /coverage
 
+#backend
+*/node_modules
+*/.env
+
+#upload images
+*/*/uploads
+
+
 # production
 /build
 
