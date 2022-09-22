@@ -8,7 +8,7 @@ const SigninContainer = () => {
   return (
     <CenterDiv className={'flex justify-center my-14'}>
       <ShadowBox>
-        <h1 className="mt-8 text-2xl">Sign In</h1>
+        <p className="mt-8 text-2xl">Sign In</p>
         <div className="border w-11/12"></div>
         <SigninFormContainer />
         <div className="border w-11/12"></div>

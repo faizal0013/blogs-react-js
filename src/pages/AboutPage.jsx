@@ -20,7 +20,7 @@ const AboutPage = () => {
     <>
       <CenterDiv className={'flex flex-col gap-y-16'}>
         <div className="text-center w-8/12 mx-auto">
-          <h2 className="text-6xl font-serif">Time to get communicate and share knowledge with each other.</h2>
+          <p className="text-6xl font-serif">Time to get communicate and share knowledge with each other.</p>
         </div>
         <div className="flex justify-center">
           <div className="w-8/12 overflow-hidden rounded-2xl">

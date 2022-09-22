@@ -44,15 +44,15 @@ exports.postNewBlog = async (req, res) => {
   try {
     const { _id } = req.params;
 
-    const { title, descriptions } = req.body;
+    const { title, content } = req.body;
 
-    if (!title || !descriptions) {
+    if (!title || !content) {
       return await res.status(400).json({ message: 'field is empty' });
     }
 
     const post = new Posts({
       title: title,
-      descriptions,
+      content,
       image: req.file.filename,
       userId: _id,
     });
@@ -73,10 +73,10 @@ exports.postNewBlog = async (req, res) => {
 exports.getUpdateDetailById = async (req, res) => {
   const { _id } = req.params;
 
-  const { title, descriptions, image } = await Posts.findById(_id);
+  const { title, content, image } = await Posts.findById(_id);
 
-  if (title && descriptions && image) {
-    return await res.status(200).json({ title, descriptions, image });
+  if (title && content && image) {
+    return await res.status(200).json({ title, content, image });
   }
 
   res.status(400).json();
@@ -85,9 +85,9 @@ exports.getUpdateDetailById = async (req, res) => {
 exports.putUpdateDetailById = async (req, res) => {
   const { _id } = req.params;
 
-  const { title, oldImage, descriptions } = req.body;
+  const { title, oldImage, content } = req.body;
 
-  if (!title || !descriptions) {
+  if (!title || !content) {
     return await res.status(400).json({ message: 'field is empty' });
   }
 
@@ -95,7 +95,7 @@ exports.putUpdateDetailById = async (req, res) => {
     const posts = await Posts.findByIdAndUpdate(_id, {
       $set: {
         title,
-        descriptions,
+        content,
         image: req.file.filename,
       },
     });
@@ -108,7 +108,7 @@ exports.putUpdateDetailById = async (req, res) => {
   await Posts.findByIdAndUpdate(_id, {
     $set: {
       title,
-      descriptions,
+      content,
     },
   });
 

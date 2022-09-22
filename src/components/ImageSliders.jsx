@@ -4,7 +4,7 @@ const ImageSliders = ({ posts }) => {
   const images = posts.map(post => require(`../assets/uploads/${post.image}`));
 
   return (
-    <div>
+    <>
       <SimpleImageSlider
         width={1600}
         height={700}
@@ -16,7 +16,7 @@ const ImageSliders = ({ posts }) => {
         slideDuration={1.3}
         navSize={60}
       />
-    </div>
+    </>
   );
 };
 

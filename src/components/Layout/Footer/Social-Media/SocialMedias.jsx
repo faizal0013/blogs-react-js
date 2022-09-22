@@ -4,7 +4,7 @@ const SocialMedias = () => {
   return (
     <>
       <div className="flex flex-col gap-y-2">
-        <h6 className="font-semibold">Social Medias</h6>
+        <p className="font-semibold">Social Medias</p>
         <div className="flex flex-col gap-y-2">
           <a href="https://www.instagram.com/" target={'_blank'} rel="noopener noreferrer">
             <span className="flex gap-x-4">

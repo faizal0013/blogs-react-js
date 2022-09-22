@@ -53,10 +53,10 @@ const ProfilePage = () => {
                 <img src={require(`../assets/profile/${profile.profile}`)} className="rounded-full" alt="" />
                 <div className="flex gap-6 flex-col">
                   <div>
-                    <span>Full Name</span> <h1 className="text-4xl">{capitalizeFirstLetter(profile.fullName)}</h1>
+                    <span>Full Name</span> <p className="text-4xl">{capitalizeFirstLetter(profile.fullName)}</p>
                   </div>
                   <div>
-                    <span>username</span> <h1 className="text-4xl">{profile.username}</h1>
+                    <span>username</span> <p className="text-4xl">{profile.username}</p>
                   </div>
                 </div>
               </div>
@@ -92,16 +92,16 @@ const ProfilePage = () => {
                       </div>
                       <Link to={`/blogs/${post._id}`}>
                         <img src={require(`../assets/uploads/${post.image}`)} alt="" />
-                        <h4 className="my-2 text-center text-xl">{post.title}</h4>
+                        <p className="my-2 text-center text-xl">{post.title}</p>
                         <p className="text-gray-600 font-serif">{post.updatedAt.split('T')[0]}</p>
-                        <p className="mt-2">{post.descriptions.slice(0, 50)}</p>
+                        <p className="mt-2">content...</p>
                       </Link>
                     </div>
                   ))}
                 </CenterDiv>
               ) : (
                 <CenterDiv>
-                  <h1 className="text-center font-bold text-6xl my-56">No Blogs</h1>
+                  <p className="text-center font-bold text-6xl my-56">No Blogs</p>
                 </CenterDiv>
               )}
             </>

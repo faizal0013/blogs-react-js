@@ -27,7 +27,7 @@ const LetestPostArea = ({ posts }) => {
                 <p className="text-gray-600 font-serif">5</p>
               </span>
             </div>
-            <h2 className="font-semibold text-center tracking-wider text-lg">{post.title}</h2>
+            <p className="font-semibold text-center tracking-wider text-lg">{post.title}</p>
           </div>
         </Link>
       ))}

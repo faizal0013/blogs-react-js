@@ -4,7 +4,7 @@ const QuickLinks = () => {
   return (
     <>
       <div className="flex flex-col gap-y-2">
-        <h6 className="font-semibold">Quick Links</h6>
+        <p className="font-semibold">Quick Links</p>
         <ol className="list-disc flex flex-col gap-y-2">
           <li>
             <Link to="" className="list-disc">

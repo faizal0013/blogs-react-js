@@ -48,7 +48,7 @@ const SingleBlogPage = () => {
           <div className="flex justify-center flex-col">
             <div className="flex justify-center flex-col gap-y-6">
               <img src={require(`../assets/uploads/${singleBlog.image}`)} alt="" className="h-[55rem]" />
-              <h1 className="text-center text-6xl">{singleBlog.title}</h1>
+              <p className="text-center text-6xl">{singleBlog.title}</p>
               <Hr className={'w-full'} />
               <div className="flex justify-between px-8">
                 <span className="flex items-center justify-around w-32">
@@ -65,12 +65,12 @@ const SingleBlogPage = () => {
               </div>
               <Hr className={'w-full'} />
               <div className="px-8 py-4 h-96 overflow-scroll border-2 border-black rounded-2xl leading-loose tracking-wide">
-                <p>{singleBlog.descriptions}</p>
+                <p dangerouslySetInnerHTML={{ __html: singleBlog.content }}></p>
               </div>
             </div>
           </div>
           <div className="my-5">
-            <h1 className="font-bold text-4xl">comments</h1>
+            <p className="font-bold text-4xl">comments</p>
           </div>
         </>
       )}

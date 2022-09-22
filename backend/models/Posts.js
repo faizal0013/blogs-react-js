@@ -11,7 +11,7 @@ const PostsSchema = new Schema(
       type: Schema.Types.String,
       required: true,
     },
-    descriptions: {
+    content: {
       type: Schema.Types.String,
       required: true,
     },
