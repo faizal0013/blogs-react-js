@@ -59,7 +59,7 @@ const BlogNewPage = () => {
         </button>
         <CenterDiv>
           <p className="text-5xl font-serif my-5 text-center">Add New Blog</p>
-          <form className="flex flex-col gap-5 p-6" onSubmit={newPostHandler} encType="multipart/form-data">
+          <form className="flex flex-col gap-5 p-6" onSubmit={newPostHandler} encType={'multipart/form-data'}>
             <div>
               <label htmlFor="title" className="mr-6">
                 Title:
@@ -80,7 +80,7 @@ const BlogNewPage = () => {
             </div>
             <div>
               <button
-                type="submit"
+                type={'submit'}
                 className="p-3 font-bold text-white rounded-2xl bg-blue-500 shadow-lg shadow-blue-500/50"
               >
                 Submit

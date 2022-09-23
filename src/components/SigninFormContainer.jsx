@@ -61,10 +61,10 @@ const SignInFormContainer = () => {
     <>
       <form onSubmit={onSubmitForm} method="post">
         <div className="flex flex-col gap-y-6">
-          <Input type="text" onChange={onInputUsernameChange} value={username} placeholder="username" />
-          <Input type="password" onChange={onInputPasswordChange} value={password} placeholder="password" />
+          <Input type={'text'} onChange={onInputUsernameChange} value={username} placeholder="username" />
+          <Input type={'password'} onChange={onInputPasswordChange} value={password} placeholder="password" />
           <div className="flex flex-col gap-y-6">
-            <button type="submit" className="p-2 shadow-lg shadow-indigo-500/50 bg-indigo-500 font-bold text-white">
+            <button type={'submit'} className="p-2 shadow-lg shadow-indigo-500/50 bg-indigo-500 font-bold text-white">
               Login
             </button>
             <Link to="{#}" className="text-blue-700 underline text-right">

@@ -1,7 +1,7 @@
 const InputFile = ({ onChangeFile }) => {
   return (
     <input
-      type="file"
+      type={'file'}
       id="file"
       className="text-sm text-grey-500
         file:mr-5 file:py-3 file:px-10

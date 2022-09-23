@@ -96,7 +96,7 @@ const BlogUpdatePage = () => {
                 className="flex flex-col gap-3"
                 method="put"
                 onSubmit={onSubmitUpdateBlog}
-                encType="multipart/form-data"
+                encType={'multipart/form-data'}
               >
                 <div className="w-11/12 mx-auto">
                   <img src={require(`../assets/uploads/${post.image}`)} alt="" />
@@ -123,7 +123,7 @@ const BlogUpdatePage = () => {
                 </div>
                 <div>
                   <button
-                    type="submit"
+                    type={'submit'}
                     className="p-3 font-bold text-white rounded-2xl bg-blue-500 shadow-lg shadow-blue-500/50"
                   >
                     Submit
