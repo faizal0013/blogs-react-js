@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import RichEditer from '../components/RichEditer/RichEditer';
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
+import InputFile from '../UI/InputFile/InputFile';
 
 const BlogNewPage = () => {
   const [title, setTitle] = useState('');
@@ -69,7 +70,7 @@ const BlogNewPage = () => {
               <label htmlFor="file" className="mr-6">
                 Image:
               </label>
-              <input type="file" id="file" onChange={onChangeFile} />
+              <InputFile onChangeFile={onChangeFile} />
             </div>
             <div>
               <label htmlFor="content">content</label>

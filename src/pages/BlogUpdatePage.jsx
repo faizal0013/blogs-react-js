@@ -8,6 +8,7 @@ import axios from 'axios';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
 import RichEditer from '../components/RichEditer/RichEditer';
+import InputFile from '../UI/InputFile/InputFile';
 
 const BlogUpdatePage = () => {
   const [post, setPost] = useState({});
@@ -110,7 +111,7 @@ const BlogUpdatePage = () => {
                   <label htmlFor="file" className="mr-6">
                     Image
                   </label>
-                  <input type="file" id="file" onChange={onChangeFile} />
+                  <InputFile onChangeFile={onChangeFile} />
                 </div>
                 <div>
                   <label htmlFor="content" className="mr-6">
