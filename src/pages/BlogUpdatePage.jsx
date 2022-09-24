@@ -126,7 +126,7 @@ const BlogUpdatePage = () => {
                     type={'submit'}
                     className="p-3 font-bold text-white rounded-2xl bg-blue-500 shadow-lg shadow-blue-500/50"
                   >
-                    Submit
+                    Update
                   </button>
                 </div>
               </form>

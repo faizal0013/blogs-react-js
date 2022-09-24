@@ -90,9 +90,9 @@ const ProfilePage = () => {
                           <MdOutlineDeleteSweep size={25} color={'red'} />
                         </Link>
                       </div>
-                      <Link to={`/blogs/${post._id}`}>
+                      <Link to={`/blogs/${post._id}`} className="flex flex-col gap-1">
                         <img src={require(`../assets/uploads/${post.image}`)} alt="" />
-                        <p className="my-2 text-center text-xl">{post.title}</p>
+                        <p className="my-2 text-xl">{post.title}</p>
                         <p className="text-gray-600 font-serif">{post.updatedAt.split('T')[0]}</p>
                         <p className="mt-2">content...</p>
                       </Link>
