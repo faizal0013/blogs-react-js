@@ -13,6 +13,7 @@ import CommentsContainers from '../components/CommentsContainers';
 const SingleBlogPage = () => {
   const [loading, setLoading] = useState(true);
   const [singleBlog, setSingleBlog] = useState({});
+  const [showPicker, setShowPicker] = useState(false);
 
   const [comment, setComment] = useState('');
 
@@ -69,10 +70,20 @@ const SingleBlogPage = () => {
             <div className="overflow-y-scroll">
               <p dangerouslySetInnerHTML={{ __html: singleBlog.posts.content }}></p>
             </div>
+            <Hr />
             <div>
               <p className="font-bold text-4xl">Comments ({singleBlog.comments.length})</p>
             </div>
             <CommentsContainers comments={singleBlog.comments} />
+            {isAuth && (
+              <CommentsTextBox
+                singleBlogId={singleBlog.posts._id}
+                setComment={setComment}
+                comment={comment}
+                showPicker={showPicker}
+                setShowPicker={setShowPicker}
+              />
+            )}
           </div>
         </>
       )}

@@ -1,6 +1,12 @@
+import { BiSmile } from 'react-icons/bi';
+
 import axios from 'axios';
 
-const CommentsTextBox = ({ singleBlogId, comment, setComment }) => {
+import TextareaAutosize from 'react-textarea-autosize';
+
+import Picker from 'emoji-picker-react';
+
+const CommentsTextBox = ({ singleBlogId, comment, setComment, showPicker, setShowPicker }) => {
   const onFormSubmit = e => {
     e.preventDefault();
 
@@ -23,13 +29,23 @@ const CommentsTextBox = ({ singleBlogId, comment, setComment }) => {
     setComment(e.target.value);
   };
 
+  const onClickEmoji = () => {
+    setShowPicker(val => !val);
+  };
+
+  const onEmojiClick = (event, emojiObject) => {
+    setComment(prevInput => prevInput + emojiObject.emoji);
+  };
+
   return (
     <>
       <form onSubmit={onFormSubmit} method={'post'}>
-        <input type={'text'} className="border border-black mr-3" onChange={onInputChange} value={comment} />
+        <TextareaAutosize className="border border-black mr-2" onChange={onInputChange} value={comment} cols={68} />
+        <BiSmile onClick={onClickEmoji} size={25} className="inline-block cursor-pointer mr-2" />
         <button type="submit" className="bg-blue-500 p-2 text-white font-bold">
           comment
         </button>
+        {showPicker && <Picker pickerStyle={{ position: 'absolute', width: '38%' }} onEmojiClick={onEmojiClick} />}
       </form>
     </>
   );
