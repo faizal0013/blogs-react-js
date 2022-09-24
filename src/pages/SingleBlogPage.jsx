@@ -72,6 +72,7 @@ const SingleBlogPage = () => {
             <div>
               <p className="font-bold text-4xl">Comments ({singleBlog.comments.length})</p>
             </div>
+            <CommentsContainers comments={singleBlog.comments} />
           </div>
         </>
       )}
