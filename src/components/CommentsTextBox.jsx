@@ -40,7 +40,7 @@ const CommentsTextBox = ({ singleBlogId, comment, setComment, showPicker, setSho
   return (
     <>
       <form onSubmit={onFormSubmit} method={'post'}>
-        <TextareaAutosize className="border border-black mr-2" onChange={onInputChange} value={comment} cols={68} />
+        <TextareaAutosize onChange={onInputChange} className="border mr-2 h-[26px]" value={comment} cols={68} />
         <BiSmile onClick={onClickEmoji} size={25} className="inline-block cursor-pointer mr-2" />
         <button type="submit" className="bg-blue-500 p-2 text-white font-bold">
           comment
