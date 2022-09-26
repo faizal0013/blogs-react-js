@@ -10,7 +10,7 @@ const CommentsContainers = ({ comments }) => {
             <p className="text-gray-600 font-serif">{comment.userId.username}</p>
             <p className="text-gray-600 font-serif text-left"> {comment.updatedAt.split('T')[0]}</p>
           </div>
-          <p className="mt-5">{comment.commentMessage}</p>
+          <p className="text-xl">{comment.commentMessage}</p>
         </div>
       </div>
     </>
