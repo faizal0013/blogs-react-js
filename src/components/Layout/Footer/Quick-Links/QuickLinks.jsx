@@ -12,6 +12,11 @@ const QuickLinks = () => {
             </Link>
           </li>
           <li>
+            <Link to="blogs" className="list-disc">
+              Blogs
+            </Link>
+          </li>
+          <li>
             <Link to="about" className="list-disc">
               About Us
             </Link>
