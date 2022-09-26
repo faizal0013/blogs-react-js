@@ -23,8 +23,7 @@ const LetestPostArea = ({ posts }) => {
               <p className="text-gray-600 font-serif">-</p>
               <span className="flex items-center justify-around w-12">
                 <TbMessages className="text-gray-600 font-serif" />
-                {/* <p className="text-gray-600 font-serif">{post.totleComment}</p> */}
-                <p className="text-gray-600 font-serif">5</p>
+                <p className="text-gray-600 font-serif">{post.commentId.length}</p>
               </span>
             </div>
             <p className="font-semibold text-center tracking-wider text-lg">{post.title}</p>
