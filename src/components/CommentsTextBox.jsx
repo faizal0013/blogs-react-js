@@ -5,6 +5,7 @@ import axios from 'axios';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import Picker from 'emoji-picker-react';
+import { toast } from 'react-toastify';
 
 const CommentsTextBox = ({ singleBlogId, comment, setComment, showPicker, setShowPicker }) => {
   const onFormSubmit = e => {
@@ -20,9 +21,9 @@ const CommentsTextBox = ({ singleBlogId, comment, setComment, showPicker, setSho
       })
       .then(data => {
         setComment('');
-        console.log(data.data);
+        toast.success(data.data.message);
       })
-      .catch(err => console.log(err));
+      .catch(err => toast.error(err.response.data.message));
   };
 
   const onInputChange = e => {

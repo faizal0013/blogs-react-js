@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 import Input from '../UI/Input/Input';
+import InputPassword from './InputPassword';
 
 const SignupFormContainer = () => {
   const [fullName, setFullName] = useState('');
@@ -67,9 +68,8 @@ const SignupFormContainer = () => {
           <Input type={'text'} onChange={onInputFullNameChange} value={fullName} placeholder="full name" />
           <Input type={'email'} onChange={onInputEmailChange} value={email} placeholder="email" />
           <Input type={'text'} onChange={onInputUsernameChange} value={username} placeholder="username" />
-          <Input type={'password'} onChange={onInputPasswordChange} value={password} placeholder="password" />
-          <Input
-            type={'password'}
+          <InputPassword onChange={onInputPasswordChange} value={password} placeholder="password" />
+          <InputPassword
             onChange={onInputConformPasswordChange}
             value={conformPassword}
             placeholder="conform password"
