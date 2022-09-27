@@ -28,14 +28,16 @@ const SingleBlogPage = () => {
   useEffect(() => {
     const userId = localStorage.getItem('_id');
 
-    axios
-      .post(`http://localhost:8080/profile/${JSON.parse(userId)}`)
-      .then(data => {
-        setProfile(data.data);
-      })
-      .catch(err => {
-        toast.error(err.response.data.message);
-      });
+    if (userId) {
+      axios
+        .post(`http://localhost:8080/profile/${JSON.parse(userId)}`)
+        .then(data => {
+          setProfile(data.data);
+        })
+        .catch(err => {
+          toast.error(err.response.data.message);
+        });
+    }
 
     axios
       .get(`http://localhost:8080/blog/${_id}`)

@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { BiSmile } from 'react-icons/bi';
 
 import axios from 'axios';
