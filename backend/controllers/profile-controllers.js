@@ -4,6 +4,7 @@ const path = require('path');
 // collection
 const User = require('../models/User');
 const Posts = require('../models/Posts');
+const Comments = require('../models/Comments');
 
 //helpers
 const { UPLOADFILEPATH } = require('../helpers/helpers');
@@ -107,6 +108,14 @@ exports.removeBlogById = async (req, res) => {
 
     const user = await User.findByIdAndUpdate(deletePostId.userId, {
       $pull: { postId: deletePostId._id },
+    });
+
+    console.log(deletePostId.commentId);
+
+    await Comments.deleteMany({
+      _id: {
+        $in: deletePostId.commentId,
+      },
     });
 
     if (user) {

@@ -17,7 +17,10 @@ const BlogRemovePage = () => {
         toast.success(data.data.message);
         navigate(-1);
       })
-      .catch(err => toast.error(err.response.data.message));
+      .catch(err => {
+        toast.error(err.response.data.message);
+        navigate(-1);
+      });
   }, [navigate, _id]);
 
   return;

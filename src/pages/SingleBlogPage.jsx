@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
 
 import axios from 'axios';
 
@@ -14,8 +15,9 @@ const SingleBlogPage = () => {
   const [loading, setLoading] = useState(true);
   const [singleBlog, setSingleBlog] = useState({});
   const [showPicker, setShowPicker] = useState(false);
-
   const [comment, setComment] = useState('');
+  const [fetch, setFetch] = useState(false);
+  const [profile, setProfile] = useState({});
 
   const { isAuth } = useContext(AuthContext);
 
@@ -24,14 +26,26 @@ const SingleBlogPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const userId = localStorage.getItem('_id');
+
+    axios
+      .post(`http://localhost:8080/profile/${JSON.parse(userId)}`)
+      .then(data => {
+        setProfile(data.data);
+      })
+      .catch(err => {
+        toast.error(err.response.data.message);
+      });
+
     axios
       .get(`http://localhost:8080/blog/${_id}`)
       .then(data => {
         setSingleBlog(data.data);
         setLoading(false);
+        setFetch(false);
       })
       .catch(err => console.error(err));
-  }, [_id, comment]);
+  }, [_id, comment, fetch]);
 
   const goBackHander = () => {
     navigate(-1);
@@ -67,14 +81,14 @@ const SingleBlogPage = () => {
             <div>
               <img src={require(`../assets/uploads/${singleBlog.posts.image}`)} alt="" className="w-[35rem] " />
             </div>
-            <div className="overflow-y-scroll">
+            <div>
               <p dangerouslySetInnerHTML={{ __html: singleBlog.posts.content }}></p>
             </div>
             <Hr />
             <div>
               <p className="font-bold text-4xl">Comments ({singleBlog.comments.length})</p>
             </div>
-            <CommentsContainers comments={singleBlog.comments} />
+            <CommentsContainers comments={singleBlog.comments} setFetch={setFetch} />
             {isAuth && (
               <CommentsTextBox
                 singleBlogId={singleBlog.posts._id}
@@ -82,6 +96,7 @@ const SingleBlogPage = () => {
                 comment={comment}
                 showPicker={showPicker}
                 setShowPicker={setShowPicker}
+                profile={profile}
               />
             )}
           </div>
