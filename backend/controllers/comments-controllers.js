@@ -32,17 +32,21 @@ exports.addComments = async (req, res) => {
 };
 
 exports.removeCommentById = async (req, res) => {
-  const { _id } = req.params;
+  try {
+    const { _id } = req.params;
 
-  const comment = await Comments.findByIdAndRemove(_id);
+    const comment = await Comments.findByIdAndRemove(_id);
 
-  if (!comment) {
+    if (!comment) {
+      return await res.status(400).json({ message: 'Somthing is wrong' });
+    }
+
+    await Posts.findByIdAndUpdate(comment.postId, {
+      $pull: { commentId: comment._id },
+    });
+
+    return await res.status(200).json({ message: 'comment is remove' });
+  } catch {
     return await res.status(400).json({ message: 'Somthing is wrong' });
   }
-
-  await Posts.findByIdAndUpdate(comment.postId, {
-    $pull: { commentId: comment._id },
-  });
-
-  return await res.status(200).json({ message: 'comment is remove' });
 };

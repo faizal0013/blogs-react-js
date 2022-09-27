@@ -110,8 +110,6 @@ exports.removeBlogById = async (req, res) => {
       $pull: { postId: deletePostId._id },
     });
 
-    console.log(deletePostId.commentId);
-
     await Comments.deleteMany({
       _id: {
         $in: deletePostId.commentId,

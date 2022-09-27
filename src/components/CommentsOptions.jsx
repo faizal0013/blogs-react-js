@@ -19,7 +19,7 @@ const CommentsOptions = ({ _id, setFetch }) => {
         toast.success(data.data.message);
         setFetch(true);
       })
-      .catch(err => console.log(err));
+      .catch(err => toast.error(err.response.data.message));
   };
 
   return (
