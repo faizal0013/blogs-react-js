@@ -12,7 +12,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthContextProvider>
     <BrowserRouter>
-      <ToastContainer autoClose={2500} />
+      <React.StrictMode>
+        <ToastContainer autoClose={2500} />
+      </React.StrictMode>
       <App />
     </BrowserRouter>
   </AuthContextProvider>

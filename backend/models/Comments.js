@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const Comments = Schema(
+const CommentsSchema = Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
@@ -20,4 +20,4 @@ const Comments = Schema(
   { timestamps: true }
 );
 
-module.exports = model('Comments', Comments);
+module.exports = model('Comments', CommentsSchema);
