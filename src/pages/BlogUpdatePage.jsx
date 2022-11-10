@@ -5,7 +5,6 @@ import { HashLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 
 import axios from 'axios';
-import slugify from 'react-slugify';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
 import RichEditer from '../components/RichEditer/RichEditer';
@@ -49,12 +48,10 @@ const BlogUpdatePage = () => {
       formData.append('oldImage', post.image);
       formData.append('image', fileName);
       formData.append('content', post.content);
-      formData.append('slug', slugify(post.title));
     } else {
       formData.append('title', post.title);
       formData.append('image', post.image);
       formData.append('content', post.content);
-      formData.append('slug', slugify(post.title));
     }
 
     axios

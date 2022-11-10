@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const slugify = require('slugify');
+
 // collection
 const User = require('../models/User');
 const Posts = require('../models/Posts');
@@ -25,7 +27,7 @@ exports.postNewBlog = async (req, res) => {
   try {
     const { _id } = req.params;
 
-    const { slug, title, content } = req.body;
+    const { title, content } = req.body;
 
     if (!title || !content) {
       return await res.status(400).json({ message: 'field is empty' });
@@ -34,7 +36,7 @@ exports.postNewBlog = async (req, res) => {
     const post = new Posts({
       title: title,
       content,
-      slug,
+      slug: slugify(title),
       image: req.file.filename,
       userId: _id,
     });
@@ -67,7 +69,7 @@ exports.getUpdateDetailById = async (req, res) => {
 exports.putUpdateDetailById = async (req, res) => {
   const { _id } = req.params;
 
-  const { title, oldImage, content, slug } = req.body;
+  const { title, oldImage, content } = req.body;
 
   if (!title || !content) {
     return await res.status(400).json({ message: 'field is empty' });
@@ -79,7 +81,7 @@ exports.putUpdateDetailById = async (req, res) => {
         title,
         content,
         image: req.file.filename,
-        slug,
+        slug: slugify(title),
       },
     });
 
@@ -92,7 +94,7 @@ exports.putUpdateDetailById = async (req, res) => {
     $set: {
       title,
       content,
-      slug,
+      slug: slugify(title),
     },
   });
 

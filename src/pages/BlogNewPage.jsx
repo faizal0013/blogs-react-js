@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import slugify from 'react-slugify';
-
 import { toast } from 'react-toastify';
 
 import axios from 'axios';
@@ -28,7 +26,6 @@ const BlogNewPage = () => {
     formData.append('title', title);
     formData.append('image', fileName);
     formData.append('content', content);
-    formData.append('slug', slugify(title));
 
     axios
       .post(`http://localhost:8080/profile/newblog/${_id}`, formData)
