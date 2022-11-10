@@ -26,7 +26,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/blogs" element={<BlogsPosts />} />
-          <Route path="/blogs/:_id" element={<SingleBlogPage />} />
+          <Route path="/blogs/:slug" element={<SingleBlogPage />} />
           <Route path="/about" element={<AboutPage />} />
           {!isAuth ? (
             <>
@@ -36,9 +36,9 @@ const App = () => {
           ) : (
             <>
               <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/profile/newblog/:_id" element={<BlogNewPage />} />
-              <Route path="/profile/updateblog/:_id" element={<BlogUpdatePage />} />
-              <Route path="/profile/removeblog/:_id" element={<BlogRemovePage />} />
+              <Route path="/profile/newblog/" element={<BlogNewPage />} />
+              <Route path="/profile/updateblog/:slug" element={<BlogUpdatePage />} />
+              <Route path="/profile/removeblog/:slug" element={<BlogRemovePage />} />
             </>
           )}
           <Route path="*" element={<PageNotFound />} />

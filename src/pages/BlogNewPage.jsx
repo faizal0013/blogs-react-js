@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import slugify from 'react-slugify';
+
 import { toast } from 'react-toastify';
 
 import axios from 'axios';
@@ -14,18 +16,19 @@ const BlogNewPage = () => {
   const [fileName, setFileName] = useState('');
   const [content, setContent] = useState('');
 
-  const { _id } = useParams();
-
   const navigate = useNavigate();
 
   const newPostHandler = e => {
     e.preventDefault();
+
+    const _id = JSON.parse(localStorage.getItem('_id'));
 
     const formData = new FormData();
 
     formData.append('title', title);
     formData.append('image', fileName);
     formData.append('content', content);
+    formData.append('slug', slugify(title));
 
     axios
       .post(`http://localhost:8080/profile/newblog/${_id}`, formData)

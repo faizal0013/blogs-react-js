@@ -13,7 +13,8 @@ const accountsRouters = require('./routers/accounts-routers');
 const profileRouters = require('./routers/profile-routers');
 const commentsRouters = require('./routers/comments-routers');
 
-const MONGODBCONNECTION = `mongodb+srv://${process.env.MONGODBUSERNAME}:${process.env.MONGODBPASSWORD}@cluster0.ypt9rds.mongodb.net/blogs?retryWrites=true&w=majority`;
+// const MONGODBCONNECTION = `mongodb+srv://${process.env.MONGODBUSERNAME}:${process.env.MONGODBPASSWORD}@cluster0.ypt9rds.mongodb.net/blogs?retryWrites=true&w=majority`;
+const MONGODBCONNECTION = `mongodb+srv://${process.env.MONGODBUSERNAME}:${process.env.MONGODBPASSWORD}@cluster0.v7plyfi.mongodb.net/blogs?retryWrites=true&w=majority`;
 
 const app = express();
 

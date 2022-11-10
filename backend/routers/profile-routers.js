@@ -14,12 +14,12 @@ router.post('/profile/:_id', profileControllers.getProfileDetail);
 router.post('/profile/newblog/:_id', upload.single('image'), profileControllers.postNewBlog);
 
 // update blog get
-router.get('/profile/updateblog/:_id', profileControllers.getUpdateDetailById);
+router.get('/profile/updateblog/:slug', profileControllers.getUpdateDetailById);
 
 // update blog put
 router.put('/profile/updateblog/:_id', upload.single('image'), profileControllers.putUpdateDetailById);
 
 // delete blog
-router.delete('/profile/removeblog/:_id', profileControllers.removeBlogById);
+router.delete('/profile/removeblog/:slug', profileControllers.removeBlogById);
 
 module.exports = router;

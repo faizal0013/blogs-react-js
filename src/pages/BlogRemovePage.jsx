@@ -6,13 +6,13 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const BlogRemovePage = () => {
-  const { _id } = useParams();
+  const { slug } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .delete(`http://localhost:8080/profile/removeblog/${_id}`)
+      .delete(`http://localhost:8080/profile/removeblog/${slug}`)
       .then(data => {
         toast.success(data.data.message);
         navigate(-1);
@@ -21,7 +21,7 @@ const BlogRemovePage = () => {
         toast.error(err.response.data.message);
         navigate(-1);
       });
-  }, [navigate, _id]);
+  }, [navigate, slug]);
 
   return;
 };

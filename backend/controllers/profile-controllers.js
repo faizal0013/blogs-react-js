@@ -25,7 +25,7 @@ exports.postNewBlog = async (req, res) => {
   try {
     const { _id } = req.params;
 
-    const { title, content } = req.body;
+    const { slug, title, content } = req.body;
 
     if (!title || !content) {
       return await res.status(400).json({ message: 'field is empty' });
@@ -34,6 +34,7 @@ exports.postNewBlog = async (req, res) => {
     const post = new Posts({
       title: title,
       content,
+      slug,
       image: req.file.filename,
       userId: _id,
     });
@@ -52,12 +53,12 @@ exports.postNewBlog = async (req, res) => {
 };
 
 exports.getUpdateDetailById = async (req, res) => {
-  const { _id } = req.params;
+  const { slug } = req.params;
 
-  const { title, content, image } = await Posts.findById(_id);
+  const { id, title, content, image } = await Posts.findOne({ slug });
 
   if (title && content && image) {
-    return await res.status(200).json({ title, content, image });
+    return await res.status(200).json({ id, title, content, image });
   }
 
   res.status(400).json();
@@ -66,7 +67,7 @@ exports.getUpdateDetailById = async (req, res) => {
 exports.putUpdateDetailById = async (req, res) => {
   const { _id } = req.params;
 
-  const { title, oldImage, content } = req.body;
+  const { title, oldImage, content, slug } = req.body;
 
   if (!title || !content) {
     return await res.status(400).json({ message: 'field is empty' });
@@ -78,6 +79,7 @@ exports.putUpdateDetailById = async (req, res) => {
         title,
         content,
         image: req.file.filename,
+        slug,
       },
     });
 
@@ -90,6 +92,7 @@ exports.putUpdateDetailById = async (req, res) => {
     $set: {
       title,
       content,
+      slug,
     },
   });
 
@@ -97,10 +100,14 @@ exports.putUpdateDetailById = async (req, res) => {
 };
 
 exports.removeBlogById = async (req, res) => {
-  const { _id } = req.params;
+  const { slug } = req.params;
 
   try {
-    const deletePostId = await Posts.findByIdAndRemove(_id);
+    // const deletePostId = await Posts.findByIdAndRemove(slug);
+
+    const postId = await Posts.findOne({ slug });
+
+    const deletePostId = await Posts.findByIdAndRemove(postId._id);
 
     if (!deletePostId) {
       return await res.status(400).json({ message: 'Somthing is wrong' });

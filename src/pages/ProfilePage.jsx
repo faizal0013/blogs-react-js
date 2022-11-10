@@ -62,7 +62,7 @@ const ProfilePage = () => {
               </div>
               <CenterDiv className={'text-right'}>
                 <Link
-                  to={`/profile/newblog/${profile._id}`}
+                  to={`/profile/newblog/`}
                   className="p-3 bg-cyan-500 shadow-lg shadow-cyan-500/50 text-white font-bold rounded-lg "
                 >
                   New Blog
@@ -78,19 +78,19 @@ const ProfilePage = () => {
                     >
                       <div className="my-4 flex gap-5 justify-end">
                         <Link
-                          to={`/profile/updateblog/${post._id}`}
+                          to={`/profile/updateblog/${post.slug}`}
                           className={'transition-all ease-in-out duration-500 hover:scale-125'}
                         >
                           <RiEdit2Line size={25} color={'red'} />
                         </Link>
                         <Link
-                          to={`/profile/removeblog/${post._id}`}
+                          to={`/profile/removeblog/${post.slug}`}
                           className={'transition-all ease-in-out duration-500 hover:scale-125'}
                         >
                           <MdOutlineDeleteSweep size={25} color={'red'} />
                         </Link>
                       </div>
-                      <Link to={`/blogs/${post._id}`} className="flex flex-col gap-1">
+                      <Link to={`/blogs/${post.slug}`} className="flex flex-col gap-1">
                         <img src={require(`../assets/uploads/${post.image}`)} alt="" />
                         <p className="my-2 text-xl">{post.title}</p>
                         <p className="text-gray-600 font-serif">{post.updatedAt.split('T')[0]}</p>

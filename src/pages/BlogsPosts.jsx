@@ -23,7 +23,7 @@ const BlogsPosts = () => {
 
   const postsItem = posts.map(post => (
     <Link
-      to={`/blogs/${post._id}`}
+      to={`/blogs/${post.slug}`}
       key={post._id}
       className="border-2 shadow-lg transition-all ease-in-out duration-500 hover:scale-105 hover:-translate-y-2"
     >

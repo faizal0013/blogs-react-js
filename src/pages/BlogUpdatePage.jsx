@@ -5,6 +5,7 @@ import { HashLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 
 import axios from 'axios';
+import slugify from 'react-slugify';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
 import RichEditer from '../components/RichEditer/RichEditer';
@@ -15,13 +16,13 @@ const BlogUpdatePage = () => {
   const [fileName, setFileName] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const { _id } = useParams();
+  const { slug } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/profile/updateblog/${_id}`)
+      .get(`http://localhost:8080/profile/updateblog/${slug}`)
       .then(data => {
         setPost(data.data);
         setLoading(false);
@@ -30,13 +31,15 @@ const BlogUpdatePage = () => {
         toast.error(err.response.data.message);
         navigate(-1);
       });
-  }, [navigate, _id]);
+  }, [navigate, slug]);
 
   const goBackHander = () => {
     navigate(-1);
   };
 
   const onSubmitUpdateBlog = e => {
+    const _id = post.id;
+
     e.preventDefault();
 
     const formData = new FormData();
@@ -46,10 +49,12 @@ const BlogUpdatePage = () => {
       formData.append('oldImage', post.image);
       formData.append('image', fileName);
       formData.append('content', post.content);
+      formData.append('slug', slugify(post.title));
     } else {
       formData.append('title', post.title);
       formData.append('image', post.image);
       formData.append('content', post.content);
+      formData.append('slug', slugify(post.title));
     }
 
     axios

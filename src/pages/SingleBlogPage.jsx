@@ -21,7 +21,7 @@ const SingleBlogPage = () => {
 
   const { isAuth } = useContext(AuthContext);
 
-  const { _id } = useParams();
+  const { slug } = useParams();
 
   const navigate = useNavigate();
 
@@ -40,14 +40,14 @@ const SingleBlogPage = () => {
     }
 
     axios
-      .get(`http://localhost:8080/blog/${_id}`)
+      .get(`http://localhost:8080/blog/${slug}`)
       .then(data => {
         setSingleBlog(data.data);
         setLoading(false);
         setFetch(false);
       })
       .catch(err => console.error(err));
-  }, [_id, comment, fetch]);
+  }, [slug, comment, fetch]);
 
   const goBackHander = () => {
     navigate(-1);

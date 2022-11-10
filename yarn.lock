@@ -7463,6 +7463,11 @@ react-simple-image-slider@2.4.1:
   resolved "https://registry.yarnpkg.com/react-simple-image-slider/-/react-simple-image-slider-2.4.1.tgz#ba80e5741b32a531110cb3811ed9f76e3eee88f8"
   integrity sha512-9T/WjsRThJup43QxzH202rLVNqaUK9P8izTiWOfLcc5w3QygU44a9IQUuIwGYiXtWvw2spRRGLRc5Xd62/vfDg==
 
+react-slugify@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-slugify/-/react-slugify-2.1.0.tgz#01d93b80381dcd47fe6e074eb137a475579967a7"
+  integrity sha512-X+kYdGP1WumAX2exool+1lwjLSZ1dDCaCzwF0KvDWHjPfCD4hxtHvok4oyZEZro2lioaR+lCtyVG8ti2Yvpnsg==
+
 react-spinners@0.13.4:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.13.4.tgz#20f7435e5cb3a2bde23110efa8b7dfbe485373e9"

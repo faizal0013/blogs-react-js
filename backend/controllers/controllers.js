@@ -16,9 +16,9 @@ exports.getAllPostsController = async (req, res) => {
 
 exports.getBlogsById = async (req, res) => {
   try {
-    const { _id } = req.params;
+    const { slug } = req.params;
 
-    const posts = await Posts.findById(_id).populate('userId');
+    const posts = await Posts.findOne({ slug }).populate('userId');
 
     const comments = await Comments.find({ _id: posts.commentId }).populate('userId');
 
