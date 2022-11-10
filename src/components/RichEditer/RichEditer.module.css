@@ -1,4 +1,4 @@
-h1 {
+.RichEditer h1 {
   display: block;
   font-size: 2em;
   margin-top: 0.67em;
@@ -7,46 +7,52 @@ h1 {
   margin-right: 0;
   font-weight: bold;
 }
-h2 {
+
+.RichEditer h2 {
   display: block;
-  font-size: 1.5em;
-  margin-top: 0.83em;
-  margin-bottom: 0.83em;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
   margin-left: 0;
   margin-right: 0;
   font-weight: bold;
 }
-h3 {
+
+.RichEditer h3 {
   display: block;
-  font-size: 1.17em;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
   margin-left: 0;
   margin-right: 0;
   font-weight: bold;
 }
-h4 {
+
+.RichEditer h4 {
   display: block;
-  margin-top: 1.33em;
-  margin-bottom: 1.33em;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
   margin-left: 0;
   margin-right: 0;
   font-weight: bold;
 }
-h5 {
+
+.RichEditer h5 {
   display: block;
-  font-size: 0.83em;
-  margin-top: 1.67em;
-  margin-bottom: 1.67em;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
   margin-left: 0;
   margin-right: 0;
   font-weight: bold;
 }
-h6 {
+
+.RichEditer h6 {
   display: block;
-  font-size: 0.67em;
-  margin-top: 2.33em;
-  margin-bottom: 2.33em;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
   margin-left: 0;
   margin-right: 0;
   font-weight: bold;

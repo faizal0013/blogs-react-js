@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import JoditEditor from 'jodit-react';
 
-import './RichEditer.css';
+import style from './RichEditer.module.css';
 
 const RichEditer = ({ setContent, content }) => {
   const editor = useRef(null);
@@ -11,7 +11,11 @@ const RichEditer = ({ setContent, content }) => {
     setContent(newContent);
   };
 
-  return <JoditEditor ref={editor} value={content} onChange={onContentChange} />;
+  return (
+    <div className={style.RichEditer}>
+      <JoditEditor ref={editor} value={content} onChange={onContentChange} />
+    </div>
+  );
 };
 
 export default RichEditer;
