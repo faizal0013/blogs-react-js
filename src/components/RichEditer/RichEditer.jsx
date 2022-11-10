@@ -20,7 +20,7 @@ const RichEditer = ({ setContent, content }) => {
     showWordsCounter: false,
     showXPathInStatusbar: false,
     buttons:
-      'bold,italic,underline,ul,ol,font,fontsize,paragraph,lineHeight,image,cut,copy,paste,hr,table,link,undo,redo,preview',
+      'bold,italic,underline,ul,ol,font,fontsize,paragraph,lineHeight,cut,copy,paste,hr,table,link,undo,redo,preview',
     uploader: {
       insertImageAsBase64URI: true,
     },
