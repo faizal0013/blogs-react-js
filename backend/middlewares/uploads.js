@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     cb(null, UPLOADFILEPATH);
   },
   filename: (req, file, cb) => {
-    cb(null, `${randomstring.generate()}-${file.originalname}`);
+    cb(null, `${randomstring.generate()}-${file.originalname}.jpeg`);
   },
 });
 

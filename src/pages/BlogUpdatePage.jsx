@@ -6,13 +6,15 @@ import { toast } from 'react-toastify';
 
 import axios from 'axios';
 
+import imageCompression from 'browser-image-compression';
+
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
 import RichEditer from '../components/RichEditer/RichEditer';
 import InputFile from '../UI/InputFile/InputFile';
 
 const BlogUpdatePage = () => {
   const [post, setPost] = useState({});
-  const [fileName, setFileName] = useState('');
+  const [imageFile, setImageFile] = useState('');
   const [loading, setLoading] = useState(true);
 
   const { slug } = useParams();
@@ -36,17 +38,26 @@ const BlogUpdatePage = () => {
     navigate(-1);
   };
 
-  const onSubmitUpdateBlog = e => {
+  const onSubmitUpdateBlog = async e => {
     const _id = post.id;
 
     e.preventDefault();
 
+    // * imageCompression options
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+
+    const compressionImage = await imageCompression(imageFile, options);
+
     const formData = new FormData();
 
-    if (fileName) {
+    if (imageFile) {
       formData.append('title', post.title);
       formData.append('oldImage', post.image);
-      formData.append('image', fileName);
+      formData.append('image', compressionImage);
       formData.append('content', post.content);
     } else {
       formData.append('title', post.title);
@@ -73,8 +84,8 @@ const BlogUpdatePage = () => {
     setPost({ ...post, content: newContent });
   };
 
-  const onChangeFile = e => {
-    setFileName(e.target.files[0]);
+  const onChangeImageFile = e => {
+    setImageFile(e.target.files[0]);
   };
 
   return (
@@ -113,7 +124,7 @@ const BlogUpdatePage = () => {
                   <label htmlFor="file" className="mr-6">
                     Image
                   </label>
-                  <InputFile onChangeFile={onChangeFile} />
+                  <InputFile onChangeImageFile={onChangeImageFile} />
                 </div>
                 <div>
                   <label htmlFor="content" className="mr-6">

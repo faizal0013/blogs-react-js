@@ -1,4 +1,4 @@
-const InputFile = ({ onChangeFile }) => {
+const InputFile = ({ onChangeImageFile }) => {
   return (
     <input
       type={'file'}
@@ -9,7 +9,7 @@ const InputFile = ({ onChangeFile }) => {
         file:text-md file:font-semibold  file:text-white
         file:bg-gradient-to-r file:from-blue-600 file:to-amber-600
         hover:file:cursor-pointer hover:file:opacity-80"
-      onChange={onChangeFile}
+      onChange={onChangeImageFile}
     />
   );
 };

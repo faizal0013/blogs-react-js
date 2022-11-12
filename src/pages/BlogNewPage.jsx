@@ -5,26 +5,37 @@ import { toast } from 'react-toastify';
 
 import axios from 'axios';
 
+import imageCompression from 'browser-image-compression';
+
 import RichEditer from '../components/RichEditer/RichEditer';
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
 import InputFile from '../UI/InputFile/InputFile';
 
 const BlogNewPage = () => {
   const [title, setTitle] = useState('');
-  const [fileName, setFileName] = useState('');
+  const [imageFile, setImageFile] = useState('');
   const [content, setContent] = useState('');
 
   const navigate = useNavigate();
 
-  const newPostHandler = e => {
+  const newPostHandler = async e => {
     e.preventDefault();
 
     const _id = JSON.parse(localStorage.getItem('_id'));
 
+    // * imageCompression options
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+
+    const compressionImage = await imageCompression(imageFile, options);
+
     const formData = new FormData();
 
     formData.append('title', title);
-    formData.append('image', fileName);
+    formData.append('image', compressionImage);
     formData.append('content', content);
 
     axios
@@ -44,8 +55,8 @@ const BlogNewPage = () => {
     setTitle(e.target.value);
   };
 
-  const onChangeFile = e => {
-    setFileName(e.target.files[0]);
+  const onChangeImageFile = e => {
+    setImageFile(e.target.files[0]);
   };
 
   return (
@@ -70,7 +81,7 @@ const BlogNewPage = () => {
               <label htmlFor="file" className="mr-6">
                 Image:
               </label>
-              <InputFile onChangeFile={onChangeFile} />
+              <InputFile onChangeImageFile={onChangeImageFile} />
             </div>
             <div>
               <label htmlFor="content">content</label>
