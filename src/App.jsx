@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useContext } from 'react';
 
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import HomePage from './pages/HomePage';
 import SigninPage from './pages/SigninPage';

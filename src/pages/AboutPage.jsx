@@ -1,21 +1,12 @@
-import { useEffect, useState } from 'react';
-import { FadeLoader } from 'react-spinners';
-
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import SamanthaGade from '../assets/images/Samantha-Gade.jpg';
 import JessBailey from '../assets/images/jess-bailey.jpg';
 import Coffee from '../assets/images/coffee.jpg';
 
 const AboutPage = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  }, []);
-
   return (
     <>
       <CenterDiv className={'flex flex-col gap-y-16'}>
@@ -24,25 +15,18 @@ const AboutPage = () => {
         </div>
         <div className="flex justify-center">
           <div className="w-8/12 overflow-hidden rounded-2xl">
-            {loading ? (
-              <div className="flex justify-center items-center">
-                <FadeLoader loading={loading} />
-              </div>
-            ) : (
-              <img src={SamanthaGade} alt="Samantha-Gade" className="h-[30rem] scale-125 w-full" />
-            )}
+            <LazyLoadImage
+              src={SamanthaGade}
+              effect="blur"
+              alt="Samantha-Gade"
+              className="h-[30rem] scale-125 w-full"
+            />
           </div>
         </div>
         <div className="w-8/12 mx-auto">
           <div className="grid grid-cols-2 gap-10">
             <div className="row-span-3 overflow-hidden shadow-xl">
-              {loading ? (
-                <div className="flex justify-center  items-center">
-                  <FadeLoader loading={loading} />
-                </div>
-              ) : (
-                <img src={JessBailey} alt="JessBailey" className="h-[35rem] scale-125" />
-              )}
+              <LazyLoadImage src={JessBailey} effect="blur" alt="JessBailey" className="h-[35rem] scale-125" />
             </div>
             <div className="p-5 leading-loose shadow-xl">
               <p>
@@ -59,13 +43,7 @@ const AboutPage = () => {
               </p>
             </div>
             <div className="row-span-3 overflow-hidden shadow-xl">
-              {loading ? (
-                <div className="flex justify-center items-center">
-                  <FadeLoader loading={loading} />
-                </div>
-              ) : (
-                <img src={Coffee} alt="Coffee" className="h-[35rem] scale-125" />
-              )}
+              <LazyLoadImage src={Coffee} effect="blur" alt="Coffee" className="h-[35rem] scale-125" />
             </div>
             <div className="p-5 leading-loose shadow-xl">
               <p>
