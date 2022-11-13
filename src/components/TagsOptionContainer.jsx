@@ -28,7 +28,7 @@ const TagsOptionContainer = () => {
       </div>
       {loading ? (
         <div className="text-center">
-          <PulseLoader size={20} color="#36d7b7" loading={loading} />
+          <PulseLoader size={20} color="#000000" loading={loading} />
         </div>
       ) : (
         <>

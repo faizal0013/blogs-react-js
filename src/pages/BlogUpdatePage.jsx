@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { HashLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 
 import axios from 'axios';
@@ -103,7 +103,7 @@ const BlogUpdatePage = () => {
     <>
       {loading ? (
         <div className="flex justify-center items-center h-[51rem]">
-          <HashLoader size={115} color="#36d7b7" loading={loading} />
+          <ClipLoader size={115} color="#000000" loading={loading} />
         </div>
       ) : (
         <>

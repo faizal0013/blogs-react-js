@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TbMessages } from 'react-icons/tb';
-import { HashLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -59,7 +59,7 @@ const BlogsPosts = () => {
       <CenterDiv>
         {loading ? (
           <div className="flex justify-center items-center h-[51rem]">
-            <HashLoader size={115} color="#36d7b7" loading={loading} />
+            <ClipLoader size={115} color="#000000" loading={loading} />
           </div>
         ) : (
           <div className="grid grid-cols-3 gap-14 my-8">{postsItem}</div>

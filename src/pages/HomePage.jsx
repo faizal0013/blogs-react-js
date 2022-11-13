@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HashLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 
 import axios from 'axios';
 
@@ -27,7 +27,7 @@ const HomePage = () => {
       <CenterDiv>
         {loading ? (
           <div className="flex justify-center items-center h-[51rem]">
-            <HashLoader size={115} color="#36d7b7" loading={loading} />
+            <ClipLoader size={115} color="#000000" loading={loading} />
           </div>
         ) : (
           <>

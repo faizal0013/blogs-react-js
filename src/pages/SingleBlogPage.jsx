@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { HashLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -59,7 +59,7 @@ const SingleBlogPage = () => {
     <CenterDiv>
       {loading ? (
         <div className="flex justify-center items-center h-[51rem]">
-          <HashLoader size={115} color="#36d7b7" loading={loading} />
+          <ClipLoader size={115} color="#000000" loading={loading} />
         </div>
       ) : (
         <>

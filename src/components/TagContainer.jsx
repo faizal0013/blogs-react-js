@@ -29,7 +29,7 @@ const TagContainer = () => {
     <>
       {loading ? (
         <div className="text-center mt-8">
-          <PulseLoader size={20} color="#36d7b7" loading={loading} />
+          <PulseLoader size={20} color="#000000" loading={loading} />
         </div>
       ) : (
         <div className="grid grid-cols-3 gap-14 my-8">

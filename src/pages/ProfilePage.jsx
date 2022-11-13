@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HashLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineDeleteSweep } from 'react-icons/md';
 import { RiEdit2Line } from 'react-icons/ri';
@@ -45,7 +45,7 @@ const ProfilePage = () => {
     <>
       {loading ? (
         <div className="flex justify-center items-center h-[51rem]">
-          <HashLoader size={115} color="#36d7b7" loading={loading} />
+          <ClipLoader size={115} color="#000000" loading={loading} />
         </div>
       ) : (
         <CenterDiv>
