@@ -33,18 +33,21 @@ const BlogNewPage = () => {
       useWebWorker: true,
     };
 
-    let compressionImage;
-
-    if (imageFile) {
-      compressionImage = await imageCompression(imageFile, options);
+    if (!title || !imageFile || !content) {
+      return toast.error('field is empty');
     }
 
     const formData = new FormData();
 
     formData.append('title', title);
-    formData.append('image', compressionImage);
     formData.append('content', content);
+
     tags.forEach(tag => formData.append('tags[]', tag.toLowerCase()));
+
+    if (imageFile) {
+      const compressionImage = await imageCompression(imageFile, options);
+      formData.append('image', compressionImage);
+    }
 
     axios
       .post(`http://localhost:8080/profile/newblog/${_id}`, formData)

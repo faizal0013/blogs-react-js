@@ -123,7 +123,7 @@ const BlogUpdatePage = () => {
                 encType={'multipart/form-data'}
               >
                 <div className="w-11/12 mx-auto">
-                  <LazyLoadImage effect="blur" src={require(`../assets/uploads/${post.image}`)} alt="" />
+                  <LazyLoadImage effect="blur" src={`/assets/uploads/${post.image}`} alt={post.image} />
                 </div>
                 <div>
                   <label htmlFor="title" className="mr-6">

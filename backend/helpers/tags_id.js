@@ -12,6 +12,7 @@ const tasgId = async tags => {
       const newTagsId = new Tags({ tag_name: tag });
 
       await newTagsId.save();
+
       return await newTagsId.id;
     })
   );

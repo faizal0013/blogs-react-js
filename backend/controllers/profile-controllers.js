@@ -34,7 +34,7 @@ exports.postNewBlog = async (req, res) => {
       return await res.status(400).json({ message: 'field is empty' });
     }
 
-    const tags_id = await tagsId(tags);
+    const tags_id = await tagsId(tags ? tags : []);
 
     const post = new Posts({
       title: title,
@@ -54,8 +54,6 @@ exports.postNewBlog = async (req, res) => {
 
     await res.status(400).json({ message: 'something is wrong' });
   } catch (error) {
-    console.log(error.message);
-
     await res.status(400).json({ message: 'field is empty' });
   }
 };

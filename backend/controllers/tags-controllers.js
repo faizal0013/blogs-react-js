@@ -30,7 +30,6 @@ exports.getFilterTag = async (req, res) => {
 
     await res.status(200).json(posts);
   } catch (error) {
-    console.log(error.message);
     await res.status(400).json({ message: 'Somthing is wrong' });
   }
 };

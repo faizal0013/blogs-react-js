@@ -100,9 +100,9 @@ const SingleBlogPage = () => {
             <div>
               <LazyLoadImage
                 effect="blur"
-                src={require(`../assets/uploads/${singleBlog.posts.image}`)}
-                alt=""
-                className="w-[35rem] "
+                src={`/assets/uploads/${singleBlog.posts.image}`}
+                alt={singleBlog.posts.image}
+                className="w-[35rem]"
               />
             </div>
             <div>

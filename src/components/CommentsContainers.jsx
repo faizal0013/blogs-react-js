@@ -9,8 +9,8 @@ const CommentsContainers = ({ comments, setFetch }) => {
       <div className="inline-block mr-5">
         <LazyLoadImage
           effect="blur"
-          src={require(`../assets/profile/${comment.userId.profile}`)}
-          alt=""
+          src={`/assets/profile/${comment.userId.profile}`}
+          alt={comment.userId.profile}
           className="rounded-full w-14"
         />
       </div>

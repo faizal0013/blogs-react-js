@@ -22,7 +22,7 @@ const PageNotFound = () => {
           </button>
         </div>
       </CenterDiv>
-      <LazyLoadImage effect="blur" src={require('../assets/images/404.jpg')} alt="" />
+      <LazyLoadImage effect="blur" src={'/assets/images/404.jpg'} alt="404" />
     </>
   );
 };

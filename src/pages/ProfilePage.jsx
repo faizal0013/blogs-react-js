@@ -54,9 +54,9 @@ const ProfilePage = () => {
               <div className="flex justify-around w-[50rem] mx-auto items-center">
                 <LazyLoadImage
                   effect="blur"
-                  src={require(`../assets/profile/${profile.profile}`)}
+                  src={`/assets/profile/${profile.profile}`}
                   className="rounded-full"
-                  alt=""
+                  alt={profile.profile}
                 />
                 <div className="flex gap-6 flex-col">
                   <div>
@@ -98,7 +98,7 @@ const ProfilePage = () => {
                         </Link>
                       </div>
                       <Link to={`/blogs/${post.slug}`} className="flex flex-col gap-1">
-                        <LazyLoadImage effect="blur" src={require(`../assets/uploads/${post.image}`)} alt="" />
+                        <LazyLoadImage effect="blur" src={`/assets/uploads/${post.image}`} alt={post.image} />
                         <p className="my-2 text-xl">{post.title}</p>
                         <p className="text-gray-600 font-serif">{post.updatedAt.split('T')[0]}</p>
                         <p className="mt-2">content...</p>

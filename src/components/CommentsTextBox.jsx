@@ -45,8 +45,8 @@ const CommentsTextBox = ({ singleBlogId, comment, setComment, showPicker, setSho
         <div className="inline-block mr-5">
           <LazyLoadImage
             effect="blur"
-            src={require(`../assets/profile/${profile.profile}`)}
-            alt=""
+            src={`/assets/profile/${profile.profile}`}
+            alt={profile.profile}
             className="rounded-full w-14"
           />
         </div>
