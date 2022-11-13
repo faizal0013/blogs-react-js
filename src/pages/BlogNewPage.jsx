@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 
+import { TagsInput } from 'react-tag-input-component';
+
 import axios from 'axios';
 
 import imageCompression from 'browser-image-compression';
@@ -15,6 +17,7 @@ const BlogNewPage = () => {
   const [title, setTitle] = useState('');
   const [imageFile, setImageFile] = useState('');
   const [content, setContent] = useState('');
+  const [tags, setTags] = useState([]);
 
   const navigate = useNavigate();
 
@@ -30,13 +33,18 @@ const BlogNewPage = () => {
       useWebWorker: true,
     };
 
-    const compressionImage = await imageCompression(imageFile, options);
+    let compressionImage;
+
+    if (imageFile) {
+      compressionImage = await imageCompression(imageFile, options);
+    }
 
     const formData = new FormData();
 
     formData.append('title', title);
     formData.append('image', compressionImage);
     formData.append('content', content);
+    tags.forEach(tag => formData.append('tags[]', tag.toLowerCase()));
 
     axios
       .post(`http://localhost:8080/profile/newblog/${_id}`, formData)
@@ -57,6 +65,10 @@ const BlogNewPage = () => {
 
   const onChangeImageFile = e => {
     setImageFile(e.target.files[0]);
+  };
+
+  const onChangeTags = tags => {
+    setTags(tags);
   };
 
   return (
@@ -89,6 +101,7 @@ const BlogNewPage = () => {
             <div>
               <RichEditer setContent={setContent} content={content} />
             </div>
+            <TagsInput placeHolder="enter tages" onChange={onChangeTags} value={tags} name="tags" />
             <div>
               <button
                 type={'submit'}

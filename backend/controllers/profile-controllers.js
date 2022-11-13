@@ -10,6 +10,7 @@ const Comments = require('../models/Comments');
 
 //helpers
 const { UPLOADFILEPATH } = require('../helpers/helpers');
+const tagsId = require('../helpers/tags_id');
 
 exports.getProfileDetail = async (req, res) => {
   const { _id } = req.params;
@@ -27,11 +28,13 @@ exports.postNewBlog = async (req, res) => {
   try {
     const { _id } = req.params;
 
-    const { title, content } = req.body;
+    const { title, content, tags } = req.body;
 
     if (!title || !content) {
       return await res.status(400).json({ message: 'field is empty' });
     }
+
+    const tags_id = await tagsId(tags);
 
     const post = new Posts({
       title: title,
@@ -39,6 +42,7 @@ exports.postNewBlog = async (req, res) => {
       slug: slugify(title),
       image: req.file.filename,
       userId: _id,
+      tags_id,
     });
 
     const user = await User.findByIdAndUpdate(_id, { $push: { postId: post._id } });
@@ -50,6 +54,8 @@ exports.postNewBlog = async (req, res) => {
 
     await res.status(400).json({ message: 'something is wrong' });
   } catch (error) {
+    console.log(error.message);
+
     await res.status(400).json({ message: 'field is empty' });
   }
 };
@@ -57,10 +63,10 @@ exports.postNewBlog = async (req, res) => {
 exports.getUpdateDetailById = async (req, res) => {
   const { slug } = req.params;
 
-  const { id, title, content, image } = await Posts.findOne({ slug });
+  const { id, title, content, image, tags_id } = await Posts.findOne({ slug }).populate('tags_id');
 
   if (title && content && image) {
-    return await res.status(200).json({ id, title, content, image });
+    return await res.status(200).json({ id, title, content, image, tags_id });
   }
 
   res.status(400).json();
@@ -69,7 +75,9 @@ exports.getUpdateDetailById = async (req, res) => {
 exports.putUpdateDetailById = async (req, res) => {
   const { _id } = req.params;
 
-  const { title, oldImage, content } = req.body;
+  const { title, oldImage, content, tags } = req.body;
+
+  const tags_id = await tagsId(tags ? tags : []);
 
   if (!title || !content) {
     return await res.status(400).json({ message: 'field is empty' });
@@ -82,6 +90,7 @@ exports.putUpdateDetailById = async (req, res) => {
         content,
         image: req.file.filename,
         slug: slugify(title),
+        tags_id,
       },
     });
 
@@ -95,6 +104,7 @@ exports.putUpdateDetailById = async (req, res) => {
       title,
       content,
       slug: slugify(title),
+      tags_id,
     },
   });
 

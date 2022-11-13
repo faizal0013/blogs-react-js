@@ -76,6 +76,10 @@ const SingleBlogPage = () => {
                 on
                 <span className="text-gray-600 font-serif"> {singleBlog.posts.updatedAt.split('T')[0]}</span>
               </p>
+              <p className="font-bold">tags</p>
+              <div className="w-56">
+                <p className="text-blue-500 italic">{singleBlog.tags.map(tag => `#${tag.tag_name}`)}</p>
+              </div>
             </div>
             <div>
               <p className="text-6xl font-serif">{singleBlog.posts.title}</p>

@@ -8,6 +8,8 @@ import axios from 'axios';
 
 import imageCompression from 'browser-image-compression';
 
+import { TagsInput } from 'react-tag-input-component';
+
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
 import RichEditer from '../components/RichEditer/RichEditer';
 import InputFile from '../UI/InputFile/InputFile';
@@ -16,6 +18,7 @@ const BlogUpdatePage = () => {
   const [post, setPost] = useState({});
   const [imageFile, setImageFile] = useState('');
   const [loading, setLoading] = useState(true);
+  const [tags, setTags] = useState([]);
 
   const { slug } = useParams();
 
@@ -26,6 +29,7 @@ const BlogUpdatePage = () => {
       .get(`http://localhost:8080/profile/updateblog/${slug}`)
       .then(data => {
         setPost(data.data);
+        setTags(data.data.tags_id.map(tag => tag.tag_name));
         setLoading(false);
       })
       .catch(err => {
@@ -43,26 +47,28 @@ const BlogUpdatePage = () => {
 
     e.preventDefault();
 
-    // * imageCompression options
-    const options = {
-      maxSizeMB: 1,
-      maxWidthOrHeight: 1920,
-      useWebWorker: true,
-    };
-
-    const compressionImage = await imageCompression(imageFile, options);
-
     const formData = new FormData();
 
     if (imageFile) {
+      // * imageCompression options
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+      };
+
+      const compressionImage = await imageCompression(imageFile, options);
+
       formData.append('title', post.title);
       formData.append('oldImage', post.image);
       formData.append('image', compressionImage);
       formData.append('content', post.content);
+      tags.forEach(tag => formData.append('tags[]', tag.toLowerCase()));
     } else {
       formData.append('title', post.title);
       formData.append('image', post.image);
       formData.append('content', post.content);
+      tags.forEach(tag => formData.append('tags[]', tag.toLowerCase()));
     }
 
     axios
@@ -86,6 +92,10 @@ const BlogUpdatePage = () => {
 
   const onChangeImageFile = e => {
     setImageFile(e.target.files[0]);
+  };
+
+  const onChangeTags = tags => {
+    setTags(tags);
   };
 
   return (
@@ -134,6 +144,7 @@ const BlogUpdatePage = () => {
                 <div>
                   <RichEditer content={post.content} setContent={setContent} />
                 </div>
+                <TagsInput onChange={onChangeTags} value={tags} name="tags" />
                 <div>
                   <button
                     type={'submit'}

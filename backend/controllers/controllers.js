@@ -20,9 +20,11 @@ exports.getBlogsById = async (req, res) => {
 
     const posts = await Posts.findOne({ slug }).populate('userId');
 
+    const tags = (await posts.populate('tags_id')).tags_id;
+
     const comments = await Comments.find({ _id: posts.commentId }).populate('userId');
 
-    await res.status(200).json({ posts, comments });
+    await res.status(200).json({ posts, comments, tags });
   } catch (error) {
     await res.status(400).json({ message: 'Somthing is wrong' });
   }

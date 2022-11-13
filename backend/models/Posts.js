@@ -23,6 +23,10 @@ const PostsSchema = new Schema(
       type: Schema.Types.String,
       required: true,
     },
+    tags_id: {
+      type: [Schema.Types.ObjectId],
+      ref: 'Tags',
+    },
     commentId: {
       type: [Schema.Types.ObjectId],
       ref: 'Comments',
