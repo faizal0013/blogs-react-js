@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import axios from 'axios';
 
@@ -78,14 +80,30 @@ const SingleBlogPage = () => {
               </p>
               <p className="font-bold">tags</p>
               <div className="w-56">
-                <p className="text-blue-500 italic">{singleBlog.tags.map(tag => `#${tag.tag_name}`)}</p>
+                {singleBlog.tags.map(tag => (
+                  <span className="text-blue-500 italic" key={tag._id}>
+                    <Link
+                      to={{
+                        pathname: '/',
+                        search: `?tag=${tag.tag_name}`,
+                      }}
+                    >
+                      {tag.tag_name}
+                    </Link>
+                  </span>
+                ))}
               </div>
             </div>
             <div>
               <p className="text-6xl font-serif">{singleBlog.posts.title}</p>
             </div>
             <div>
-              <img src={require(`../assets/uploads/${singleBlog.posts.image}`)} alt="" className="w-[35rem] " />
+              <LazyLoadImage
+                effect="blur"
+                src={require(`../assets/uploads/${singleBlog.posts.image}`)}
+                alt=""
+                className="w-[35rem] "
+              />
             </div>
             <div>
               <p dangerouslySetInnerHTML={{ __html: singleBlog.posts.content }}></p>

@@ -1,3 +1,4 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CommentsOptions from './CommentsOptions';
 
 const CommentsContainers = ({ comments, setFetch }) => {
@@ -6,7 +7,12 @@ const CommentsContainers = ({ comments, setFetch }) => {
   const comment = comments.map(comment => (
     <div key={comment._id}>
       <div className="inline-block mr-5">
-        <img src={require(`../assets/profile/${comment.userId.profile}`)} alt="" className="rounded-full w-14" />
+        <LazyLoadImage
+          effect="blur"
+          src={require(`../assets/profile/${comment.userId.profile}`)}
+          alt=""
+          className="rounded-full w-14"
+        />
       </div>
       <div className="border px-12 py-5 w-[45rem] rounded-2xl shadow-lg my-7 inline-block">
         <div className="flex justify-between items-center">

@@ -12,6 +12,7 @@ const routers = require('./routers/routers');
 const accountsRouters = require('./routers/accounts-routers');
 const profileRouters = require('./routers/profile-routers');
 const commentsRouters = require('./routers/comments-routers');
+const TagsRouters = require('./routers/tags-routers');
 
 // const MONGODBCONNECTION = `mongodb+srv://${process.env.MONGODBUSERNAME}:${process.env.MONGODBPASSWORD}@cluster0.ypt9rds.mongodb.net/blogs?retryWrites=true&w=majority`;
 const MONGODBCONNECTION = `mongodb+srv://${process.env.MONGODBUSERNAME}:${process.env.MONGODBPASSWORD}@cluster0.viniqqa.mongodb.net/blogs?retryWrites=true&w=majority`;
@@ -26,6 +27,7 @@ app.use(routers);
 app.use(accountsRouters);
 app.use(profileRouters);
 app.use(commentsRouters);
+app.use(TagsRouters);
 
 mongoose
   .connect(MONGODBCONNECTION)

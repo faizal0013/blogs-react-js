@@ -8,6 +8,7 @@ import axios from 'axios';
 
 import imageCompression from 'browser-image-compression';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { TagsInput } from 'react-tag-input-component';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
@@ -53,7 +54,7 @@ const BlogUpdatePage = () => {
       // * imageCompression options
       const options = {
         maxSizeMB: 1,
-        maxWidthOrHeight: 1920,
+        maxWidthOrHeight: 2000,
         useWebWorker: true,
       };
 
@@ -122,7 +123,7 @@ const BlogUpdatePage = () => {
                 encType={'multipart/form-data'}
               >
                 <div className="w-11/12 mx-auto">
-                  <img src={require(`../assets/uploads/${post.image}`)} alt="" />
+                  <LazyLoadImage effect="blur" src={require(`../assets/uploads/${post.image}`)} alt="" />
                 </div>
                 <div>
                   <label htmlFor="title" className="mr-6">

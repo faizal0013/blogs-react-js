@@ -6,6 +6,7 @@ import axios from 'axios';
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
 import LetestPostContainer from '../components/LetestPostContainer';
 import ImageSliders from '../components/ImageSliders';
+import TagsOptionContainer from '../components/TagsOptionContainer';
 
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,7 @@ const HomePage = () => {
           <>
             <ImageSliders posts={posts} />
             <LetestPostContainer posts={posts} />
+            <TagsOptionContainer />
           </>
         )}
       </CenterDiv>

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
 
@@ -21,7 +22,7 @@ const PageNotFound = () => {
           </button>
         </div>
       </CenterDiv>
-      <img src={require('../assets/images/404.jpg')} alt="" />
+      <LazyLoadImage effect="blur" src={require('../assets/images/404.jpg')} alt="" />
     </>
   );
 };

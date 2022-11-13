@@ -5,6 +5,8 @@ import { MdOutlineDeleteSweep } from 'react-icons/md';
 import { RiEdit2Line } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import axios from 'axios';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
@@ -50,7 +52,12 @@ const ProfilePage = () => {
           {
             <>
               <div className="flex justify-around w-[50rem] mx-auto items-center">
-                <img src={require(`../assets/profile/${profile.profile}`)} className="rounded-full" alt="" />
+                <LazyLoadImage
+                  effect="blur"
+                  src={require(`../assets/profile/${profile.profile}`)}
+                  className="rounded-full"
+                  alt=""
+                />
                 <div className="flex gap-6 flex-col">
                   <div>
                     <span>Full Name</span> <p className="text-4xl">{capitalizeFirstLetter(profile.fullName)}</p>
@@ -91,7 +98,7 @@ const ProfilePage = () => {
                         </Link>
                       </div>
                       <Link to={`/blogs/${post.slug}`} className="flex flex-col gap-1">
-                        <img src={require(`../assets/uploads/${post.image}`)} alt="" />
+                        <LazyLoadImage effect="blur" src={require(`../assets/uploads/${post.image}`)} alt="" />
                         <p className="my-2 text-xl">{post.title}</p>
                         <p className="text-gray-600 font-serif">{post.updatedAt.split('T')[0]}</p>
                         <p className="mt-2">content...</p>

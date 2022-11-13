@@ -29,7 +29,7 @@ const BlogNewPage = () => {
     // * imageCompression options
     const options = {
       maxSizeMB: 1,
-      maxWidthOrHeight: 1920,
+      maxWidthOrHeight: 2000,
       useWebWorker: true,
     };
 
