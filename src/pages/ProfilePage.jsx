@@ -21,22 +21,16 @@ const ProfilePage = () => {
   useEffect(() => {
     const _id = localStorage.getItem('_id');
 
-    const timeOut = setTimeout(() => {
-      axios
-        .post(`http://localhost:8080/profile/${JSON.parse(_id)}`)
-        .then(data => {
-          setLoading(false);
-          setProfile(data.data);
-        })
-        .catch(err => {
-          toast.error(err.response.data.message);
-          navigate(-1);
-        });
-    }, 1000);
-
-    return () => {
-      clearTimeout(timeOut);
-    };
+    axios
+      .post(`http://localhost:8080/profile/${JSON.parse(_id)}`)
+      .then(data => {
+        setLoading(false);
+        setProfile(data.data);
+      })
+      .catch(err => {
+        toast.error(err.response.data.message);
+        navigate(-1);
+      });
   }, [navigate]);
 
   const capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1);

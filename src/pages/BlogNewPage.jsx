@@ -52,7 +52,7 @@ const BlogNewPage = () => {
     axios
       .post(`http://localhost:8080/profile/newblog/${_id}`, formData)
       .then(data => {
-        navigate(-1);
+        navigate('/profile');
         toast.success(data.data.message);
       })
       .catch(err => toast.error(err.response.data.message));
