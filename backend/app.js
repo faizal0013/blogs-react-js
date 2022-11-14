@@ -14,8 +14,7 @@ const profileRouters = require('./routers/profile-routers');
 const commentsRouters = require('./routers/comments-routers');
 const TagsRouters = require('./routers/tags-routers');
 
-// const MONGODBCONNECTION = `mongodb+srv://${process.env.MONGODBUSERNAME}:${process.env.MONGODBPASSWORD}@cluster0.ypt9rds.mongodb.net/blogs?retryWrites=true&w=majority`;
-const MONGODBCONNECTION = `mongodb+srv://${process.env.MONGODBUSERNAME}:${process.env.MONGODBPASSWORD}@cluster0.viniqqa.mongodb.net/blogs?retryWrites=true&w=majority`;
+const MONGODBCONNECTION = `mongodb+srv://${process.env.MONGODBUSERNAME}:${process.env.MONGODBPASSWORD}@${process.env.MONGODBCLUSTERNAME}.mongodb.net/blogs?retryWrites=true&w=majority`;
 
 const app = express();
 
