@@ -3,7 +3,6 @@ import { ClipLoader } from 'react-spinners';
 import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineDeleteSweep } from 'react-icons/md';
 import { RiEdit2Line } from 'react-icons/ri';
-import { toast } from 'react-toastify';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
