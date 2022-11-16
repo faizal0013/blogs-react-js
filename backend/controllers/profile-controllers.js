@@ -13,15 +13,23 @@ const { UPLOADFILEPATH } = require('../helpers/helpers');
 const tagsId = require('../helpers/tags_id');
 
 exports.getProfileDetail = async (req, res) => {
-  const { _id } = req.params;
+  try {
+    const { _id } = req.params;
 
-  if (!_id) {
-    return await res.status(400).json({ message: 'something is wrong' });
+    if (!_id) {
+      return await res.status(400).json({ message: 'something is wrong' });
+    }
+
+    const user = await User.findById(_id).populate('postId');
+
+    if (!user) {
+      return res.status(404).json({ message: 'invalid user' });
+    }
+
+    await res.status(200).json(user);
+  } catch (error) {
+    await res.status(400).json({ message: 'something is wrong' });
   }
-
-  const user = await User.findById(_id).populate('postId');
-
-  await res.status(200).json(user);
 };
 
 exports.postNewBlog = async (req, res) => {

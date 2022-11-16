@@ -11,15 +11,26 @@ import axios from 'axios';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
 import Hr from '../UI/Hr/Hr';
+import { useContext } from 'react';
+import AuthContext from '../context/auth-context';
 
 const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState({});
 
+  const { isAuthSubmitHandler } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const _id = localStorage.getItem('_id');
+
+    if (!_id) {
+      localStorage.removeItem('_id');
+      isAuthSubmitHandler(false);
+      navigate('/');
+      return;
+    }
 
     axios
       .post(`http://localhost:8080/profile/${JSON.parse(_id)}`)
@@ -28,10 +39,11 @@ const ProfilePage = () => {
         setProfile(data.data);
       })
       .catch(err => {
-        toast.error(err.response.data.message);
-        navigate(-1);
+        localStorage.removeItem('_id');
+        isAuthSubmitHandler(false);
+        navigate('/');
       });
-  }, [navigate]);
+  }, [navigate, isAuthSubmitHandler]);
 
   const capitalizeFirstLetter = str => str.charAt(0).toUpperCase() + str.slice(1);
 

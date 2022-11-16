@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import CenterDiv from '../UI/CenterDiv/CenterDiv';
+import PageNotFoundImage from '../assets/images/404.jpg';
 
 const PageNotFound = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const PageNotFound = () => {
           </button>
         </div>
       </CenterDiv>
-      <LazyLoadImage effect="blur" src={'/assets/images/404.jpg'} alt="404" />
+      <LazyLoadImage effect="blur" src={PageNotFoundImage} alt="404" />
     </>
   );
 };
