@@ -88,7 +88,7 @@ const SingleBlogPage = () => {
                         search: `?tag=${tag.tag_name}`,
                       }}
                     >
-                      {tag.tag_name}
+                      {tag.tag_name}{' '}
                     </Link>
                   </span>
                 ))}

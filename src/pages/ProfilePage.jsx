@@ -103,7 +103,12 @@ const ProfilePage = () => {
                         </Link>
                       </div>
                       <Link to={`/blogs/${post.slug}`} className="flex flex-col gap-1">
-                        <LazyLoadImage effect="blur" src={`/assets/uploads/${post.image}`} alt={post.image} />
+                        <LazyLoadImage
+                          effect="blur"
+                          src={`/assets/uploads/${post.image}`}
+                          alt={post.image}
+                          className="h-64"
+                        />
                         <p className="my-2 text-xl">{post.title}</p>
                         <p className="text-gray-600 font-serif">{post.updatedAt.split('T')[0]}</p>
                         <p className="mt-2">content...</p>
