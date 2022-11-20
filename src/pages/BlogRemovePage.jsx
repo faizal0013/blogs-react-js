@@ -15,11 +15,11 @@ const BlogRemovePage = () => {
       .delete(`http://localhost:8080/profile/removeblog/${slug}`)
       .then(data => {
         toast.success(data.data.message);
-        navigate(-1);
+        navigate('/profile');
       })
       .catch(err => {
-        toast.error(err.response.data.message);
-        navigate(-1);
+        // toast.error(err.response.data.message);
+        navigate('/profile');
       });
   }, [navigate, slug]);
 
