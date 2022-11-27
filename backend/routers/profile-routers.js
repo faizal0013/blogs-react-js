@@ -8,10 +8,10 @@ const router = Router();
 const upload = require('../middlewares/uploads');
 
 // get profile
-router.post('/profile/:_id', profileControllers.getProfileDetail);
+router.post('/profile/', profileControllers.getProfileDetail);
 
 // new blog
-router.post('/profile/newblog/:_id', upload.single('image'), profileControllers.postNewBlog);
+router.post('/profile/newblog/', upload.single('image'), profileControllers.postNewBlog);
 
 // update blog get
 router.get('/profile/updateblog/:slug', profileControllers.getUpdateDetailById);

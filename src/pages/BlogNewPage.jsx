@@ -24,7 +24,7 @@ const BlogNewPage = () => {
   const newPostHandler = async e => {
     e.preventDefault();
 
-    const _id = JSON.parse(localStorage.getItem('_id'));
+    const token = JSON.parse(localStorage.getItem('token'));
 
     // * imageCompression options
     const options = {
@@ -50,7 +50,11 @@ const BlogNewPage = () => {
     }
 
     axios
-      .post(`http://localhost:8080/profile/newblog/${_id}`, formData)
+      .post('http://localhost:8080/profile/newblog/', formData, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
       .then(data => {
         navigate('/profile');
         toast.success(data.data.message);

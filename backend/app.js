@@ -8,6 +8,8 @@ require('dotenv').config();
 
 const mongoose = require('mongoose');
 
+const jwtMiddleware = require('./middlewares/jwt-middlewares');
+
 const routers = require('./routers/routers');
 const accountsRouters = require('./routers/accounts-routers');
 const profileRouters = require('./routers/profile-routers');
@@ -24,9 +26,13 @@ app.use(express.json());
 
 app.use(routers);
 app.use(accountsRouters);
+app.use(TagsRouters);
+
+// jwt middlewares
+app.use(jwtMiddleware);
+
 app.use(profileRouters);
 app.use(commentsRouters);
-app.use(TagsRouters);
 
 mongoose
   .connect(MONGODBCONNECTION)

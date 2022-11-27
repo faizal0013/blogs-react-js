@@ -22,23 +22,31 @@ const ProfilePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const _id = localStorage.getItem('_id');
+    const token = localStorage.getItem('token');
 
-    if (!_id) {
-      localStorage.removeItem('_id');
+    if (!token) {
+      localStorage.removeItem('token');
       isAuthSubmitHandler(false);
       navigate('/');
       return;
     }
 
     axios
-      .post(`http://localhost:8080/profile/${JSON.parse(_id)}`)
+      .post(
+        'http://localhost:8080/profile/',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        }
+      )
       .then(data => {
         setLoading(false);
         setProfile(data.data);
       })
       .catch(err => {
-        localStorage.removeItem('_id');
+        localStorage.removeItem('token');
         isAuthSubmitHandler(false);
         navigate('/');
       });

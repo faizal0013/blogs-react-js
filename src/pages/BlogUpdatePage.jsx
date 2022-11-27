@@ -26,8 +26,14 @@ const BlogUpdatePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'));
+
     axios
-      .get(`http://localhost:8080/profile/updateblog/${slug}`)
+      .get(`http://localhost:8080/profile/updateblog/${slug}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(data => {
         setPost(data.data);
         setTags(data.data.tags_id.map(tag => tag.tag_name));
@@ -72,8 +78,14 @@ const BlogUpdatePage = () => {
       tags.forEach(tag => formData.append('tags[]', tag.toLowerCase()));
     }
 
+    const token = JSON.parse(localStorage.getItem('token'));
+
     axios
-      .put(`http://localhost:8080/profile/updateblog/${_id}`, formData)
+      .put(`http://localhost:8080/profile/updateblog/${_id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(data => {
         toast.success(data.data.message);
         navigate(-1);

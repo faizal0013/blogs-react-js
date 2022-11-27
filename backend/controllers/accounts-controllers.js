@@ -1,4 +1,7 @@
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+
+require('dotenv').config();
 
 // collection
 const User = require('../models/User');
@@ -59,8 +62,12 @@ exports.signinController = async (req, res) => {
 
   const { _id } = account;
 
+  const token = await jwt.sign({ userId: _id }, process.env.JWT_TOKEN, {
+    expiresIn: '30m',
+  });
+
   return await res.status(201).json({
     message: 'login successful',
-    _id,
+    token,
   });
 };

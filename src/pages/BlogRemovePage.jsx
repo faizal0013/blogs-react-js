@@ -11,8 +11,14 @@ const BlogRemovePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'));
+
     axios
-      .delete(`http://localhost:8080/profile/removeblog/${slug}`)
+      .delete(`http://localhost:8080/profile/removeblog/${slug}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
       .then(data => {
         toast.success(data.data.message);
         navigate('/profile');

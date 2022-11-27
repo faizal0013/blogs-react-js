@@ -14,7 +14,7 @@ const tagsId = require('../helpers/tags_id');
 
 exports.getProfileDetail = async (req, res) => {
   try {
-    const { _id } = req.params;
+    const { userId: _id } = req;
 
     if (!_id) {
       return await res.status(400).json({ message: 'something is wrong' });
@@ -34,7 +34,7 @@ exports.getProfileDetail = async (req, res) => {
 
 exports.postNewBlog = async (req, res) => {
   try {
-    const { _id } = req.params;
+    const { userId: _id } = req;
 
     const { title, content, tags } = req.body;
 

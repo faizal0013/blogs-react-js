@@ -11,8 +11,9 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const _id = localStorage.getItem('_id');
-    if (_id) {
+    const token = localStorage.getItem('token');
+
+    if (token) {
       isAuthSubmitHandler(true);
     }
   }, [isAuthSubmitHandler]);
@@ -21,7 +22,7 @@ const NavBar = () => {
     e.preventDefault();
     isAuthSubmitHandler(false);
     toast.success('logout successfully');
-    localStorage.removeItem('_id');
+    localStorage.removeItem('token');
     navigate('/');
   };
 

@@ -35,9 +35,9 @@ const SignInFormContainer = () => {
         password,
       })
       .then(data => {
-        const { _id } = data.data;
+        const { token } = data.data;
 
-        localStorage.setItem('_id', JSON.stringify(_id));
+        localStorage.setItem('token', JSON.stringify(token));
 
         isAuthSubmitHandler(true);
         toast.success(data.data.message);
