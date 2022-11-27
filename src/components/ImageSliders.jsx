@@ -1,7 +1,7 @@
 import SimpleImageSlider from 'react-simple-image-slider';
 
 const ImageSliders = ({ posts }) => {
-  const images = posts.map(post => `/assets/uploads/${post.image}`);
+  const images = posts.map(post => `http://localhost:8080/static/uploads/${post.image}`);
 
   return (
     <>

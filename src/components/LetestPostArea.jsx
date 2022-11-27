@@ -15,7 +15,7 @@ const LetestPostArea = ({ posts }) => {
         >
           <LazyLoadImage
             effect="blur"
-            src={`/assets/uploads/${post.image}`}
+            src={`http://localhost:8080/static/uploads/${post.image}`}
             alt={`${post.userId.profile}`}
             className="h-80 w-[40rem]"
           />
@@ -24,7 +24,7 @@ const LetestPostArea = ({ posts }) => {
               <span className="flex items-center justify-around w-32">
                 <LazyLoadImage
                   effect="blur"
-                  src={`/assets/profile/${post.userId.profile}`}
+                  src={`http://localhost:8080/static/profiles/${post.userId.profile}`}
                   alt={post.userId.profile}
                   className="w-8 rounded-full"
                 />

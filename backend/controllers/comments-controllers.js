@@ -2,11 +2,13 @@ const Comments = require('../models/Comments');
 const Posts = require('../models/Posts');
 
 exports.addComments = async (req, res) => {
-  const { userId, postId, commentMessage } = req.body;
+  const { postId, commentMessage } = req.body;
 
   if (!commentMessage) {
     return await res.status(400).json({ message: 'field is empty' });
   }
+
+  const { userId } = req;
 
   const comments = new Comments({
     userId,

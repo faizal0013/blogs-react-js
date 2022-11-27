@@ -28,11 +28,19 @@ const SingleBlogPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userId = localStorage.getItem('_id');
+    const token = localStorage.getItem('token');
 
-    if (userId) {
+    if (token) {
       axios
-        .post(`http://localhost:8080/profile/${JSON.parse(userId)}`)
+        .post(
+          `http://localhost:8080/profile/`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${JSON.parse(token)}`,
+            },
+          }
+        )
         .then(data => {
           setProfile(data.data);
         })
@@ -100,7 +108,7 @@ const SingleBlogPage = () => {
             <div>
               <LazyLoadImage
                 effect="blur"
-                src={`/assets/uploads/${singleBlog.posts.image}`}
+                src={`http://localhost:8080/static/uploads/${singleBlog.posts.image}`}
                 alt={singleBlog.posts.image}
                 className="w-[35rem]"
               />

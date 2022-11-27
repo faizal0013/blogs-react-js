@@ -29,13 +29,18 @@ const BlogsPosts = () => {
       key={post._id}
       className="border-2 shadow-lg transition-all ease-in-out duration-500 hover:scale-105 hover:-translate-y-2"
     >
-      <LazyLoadImage effect="blur" src={`/assets/uploads/${post.image}`} alt="imgaes" className="h-80 w-[40rem]" />
+      <LazyLoadImage
+        effect="blur"
+        src={`http://localhost:8080/static/uploads/${post.image}`}
+        alt="imgaes"
+        className="h-80 w-[40rem]"
+      />
       <div className="my-10 mx-8 flex flex-col gap-y-4">
         <div className="flex items-center gap-x-8 justify-between">
           <span className="flex items-center justify-around w-32">
             <LazyLoadImage
               effect="blur"
-              src={`/assets/profile/${post.userId.profile}`}
+              src={`http://localhost:8080/static/profiles/${post.userId.profile}`}
               alt="sa"
               className="w-8 rounded-full"
             />

@@ -12,14 +12,21 @@ const CommentsTextBox = ({ singleBlogId, comment, setComment, showPicker, setSho
   const onFormSubmit = e => {
     e.preventDefault();
 
-    const _id = JSON.parse(localStorage.getItem('_id'));
+    const token = localStorage.getItem('token');
 
     axios
-      .post('http://localhost:8080/comments', {
-        userId: _id,
-        postId: singleBlogId,
-        commentMessage: comment,
-      })
+      .post(
+        'http://localhost:8080/comments',
+        {
+          postId: singleBlogId,
+          commentMessage: comment,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        }
+      )
       .then(data => {
         setComment('');
         toast.success(data.data.message);
@@ -45,7 +52,7 @@ const CommentsTextBox = ({ singleBlogId, comment, setComment, showPicker, setSho
         <div className="inline-block mr-5">
           <LazyLoadImage
             effect="blur"
-            src={`/assets/profile/${profile.profile}`}
+            src={`http://localhost:8080/static/profiles/${profile.profile}`}
             alt={profile.profile}
             className="rounded-full w-14"
           />

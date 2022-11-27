@@ -67,7 +67,7 @@ const ProfilePage = () => {
               <div className="flex justify-around w-[50rem] mx-auto items-center">
                 <LazyLoadImage
                   effect="blur"
-                  src={`/assets/profile/${profile.profile}`}
+                  src={`http://localhost:8080/static/profiles/${profile.profile}`}
                   className="rounded-full"
                   alt={profile.profile}
                 />
@@ -113,7 +113,7 @@ const ProfilePage = () => {
                       <Link to={`/blogs/${post.slug}`} className="flex flex-col gap-1">
                         <LazyLoadImage
                           effect="blur"
-                          src={`/assets/uploads/${post.image}`}
+                          src={`http://localhost:8080/static/uploads/${post.image}`}
                           alt={post.image}
                           className="h-64"
                         />
