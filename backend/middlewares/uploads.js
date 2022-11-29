@@ -6,7 +6,6 @@ const randomstring = require('randomstring');
 //helpers
 const { UPLOADFILEPATH } = require('../helpers/helpers');
 
-console.log(UPLOADFILEPATH);
 
 // multer diskStorage
 const storage = multer.diskStorage({
