@@ -1,9 +1,7 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CommentsOptions from './CommentsOptions';
 
-const CommentsContainers = ({ comments, setFetch }) => {
-  const userId = localStorage.getItem('_id');
-
+const CommentsContainers = ({ comments, setFetch, profile }) => {
   const comment = comments.map(comment => (
     <div key={comment._id}>
       <div className="inline-block mr-5">
@@ -20,7 +18,7 @@ const CommentsContainers = ({ comments, setFetch }) => {
             <p className="text-gray-600 font-serif">{comment.userId.username}</p>
             <p className="text-gray-600 font-serif text-left"> {comment.updatedAt.split('T')[0]}</p>
           </div>
-          {JSON.parse(userId) === comment.userId._id && <CommentsOptions _id={comment._id} setFetch={setFetch} />}
+          {profile._id === comment.userId._id && <CommentsOptions _id={comment._id} setFetch={setFetch} />}
         </div>
         <p className="text-xl">{comment.commentMessage}</p>
       </div>

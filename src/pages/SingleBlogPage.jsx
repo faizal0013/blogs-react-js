@@ -120,7 +120,7 @@ const SingleBlogPage = () => {
             <div>
               <p className="font-bold text-4xl">Comments ({singleBlog.comments.length})</p>
             </div>
-            <CommentsContainers comments={singleBlog.comments} setFetch={setFetch} />
+            <CommentsContainers comments={singleBlog.comments} profile={profile} setFetch={setFetch} />
             {isAuth && (
               <CommentsTextBox
                 singleBlogId={singleBlog.posts._id}
