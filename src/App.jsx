@@ -33,22 +33,24 @@ const HomePage = React.lazy(() => import('./pages/HomePage'));
 const SigninPage = React.lazy(() => import('./pages/SigninPage'));
 const SignupPage = React.lazy(() => import('./pages/SignupPage'));
 const PageNotFound = React.lazy(() => import('./components/PageNotFound'));
+const ForgotPage = React.lazy(() => import('./pages/ForgotPage'));
+const ChangePassword = React.lazy(() => import('./pages/ChangePassword'));
 
 const App = () => {
   const { isAuth } = useContext(AuthContext);
 
   return (
     <>
-      <Layout>
-        <Suspense
-          fallback={
-            <div className="flex justify-center items-center h-[51rem]">
-              <ClipLoader size={115} color="#000000" />
-            </div>
-          }
-        >
-          <Routes>
-            <Route path="/" element={<HomePage />} />
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-[51rem]">
+            <ClipLoader size={115} color="#000000" />
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
             <Route path="/blogs" element={<BlogsPosts />} />
             <Route path="/blogs/:slug" element={<SingleBlogPage />} />
             <Route path="/about" element={<AboutPage />} />
@@ -56,6 +58,7 @@ const App = () => {
               <>
                 <Route path="/signin" element={<SigninPage />} />
                 <Route path="/signup" element={<SignupPage />} />
+                <Route path="/forgot" element={<ForgotPage />} />
               </>
             ) : (
               <>
@@ -66,9 +69,10 @@ const App = () => {
               </>
             )}
             <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </Suspense>
-      </Layout>
+          </Route>
+          <Route path="/forgot/:token" element={<ChangePassword />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };

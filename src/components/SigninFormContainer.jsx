@@ -68,7 +68,7 @@ const SignInFormContainer = () => {
             <button type={'submit'} className="p-2 shadow-lg shadow-indigo-500/50 bg-indigo-500 font-bold text-white">
               Login
             </button>
-            <Link to="{#}" className="text-blue-700 underline text-right">
+            <Link to="/forgot" className="text-blue-700 underline text-right">
               Forgot password?
             </Link>
           </div>

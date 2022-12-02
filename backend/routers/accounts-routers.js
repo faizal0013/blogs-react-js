@@ -10,4 +10,8 @@ router.post('/signin', accountsControllers.signinController);
 // signup route
 router.post('/signup', accountsControllers.signupController);
 
+router.post('/forgot', accountsControllers.forgotController);
+
+router.put('/forgot/:token', accountsControllers.putForgotController);
+
 module.exports = router;

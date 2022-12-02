@@ -1,13 +1,15 @@
+import { Outlet } from 'react-router-dom';
+
 import NavBar from './NavBar/NavBar';
 import Hr from '../../UI/Hr/Hr';
 import Footer from './Footer/Footer';
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <>
       <NavBar />
       <Hr />
-      {children}
+      <Outlet />
       <Hr />
       <Footer />
     </>
