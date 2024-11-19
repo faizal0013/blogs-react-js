@@ -18,7 +18,7 @@ const TagsRouters = require('./routers/tags-routers');
 
 const { STATICIMAGEURL } = require('./helpers/helpers');
 
-const MONGODBCONNECTION = `mongodb+srv://${process.env.MONGODBUSERNAME}:${process.env.MONGODBPASSWORD}@${process.env.MONGODBCLUSTERNAME}.mongodb.net/blogs?retryWrites=true&w=majority`;
+const MONGODBCONNECTION = process.env.MONGODB_URL;
 
 const app = express();
 
